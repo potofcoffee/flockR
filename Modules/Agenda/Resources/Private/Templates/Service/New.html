@@ -1,0 +1,32 @@
+<f:layout name="Default"/>
+
+<f:section name="Main">
+    <div class="page-header">
+        <h1>Neuer Gottesdienst</h1>
+    </div>
+
+    <form action="/agenda/service/create">
+        <div class="form-group">
+            <label for="type">Typ</label>
+            <select name="service[type]" class="form-control">
+                <option value="event">Gottesdienst</option>
+                <option value="template">Vorlage</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="type">Titel</label>
+            <input type="text" class="form-control" name="service[title]" />
+        </div>
+        <div class="form-group">
+            <label for="type">Zugeordnete Veranstaltung</label>
+            <select name="service[event_id]" class="form-control">
+            </select>
+        </div>
+        <hr />
+        <input type="submit" class="btn btn-primary" value="Anlegen" />
+        <a class="btn btn-default" href="/agenda/services/list">Zurück zur Übersicht</a>
+
+    </form>
+
+
+</f:section>

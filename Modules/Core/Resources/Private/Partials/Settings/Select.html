@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label for="{setting.id}">{setting.label -> f:format.raw()}</label>
+    <select class="form-control" name="{setting.id}" id="{setting.id}">
+        <f:for each="{setting.options}" as="option" key="key">
+            <option value="{key}" {f:if(condition: '{0: key} == {0: setting.value}', then: 'selected')}>{option -> f:format.raw()}</option>
+        </f:for>
+    </select>
+</div>

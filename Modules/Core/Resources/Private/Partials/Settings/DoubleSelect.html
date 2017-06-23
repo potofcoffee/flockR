@@ -1,0 +1,53 @@
+<div class="form-group">
+    <label for="{setting.id}">{setting.label -> f:format.raw()}</label>
+    <div class="row">
+        <div class="col-sm-6">
+            <input type="hidden" name="{setting.id}" value="{setting.value}"/>
+            <input type="hidden" name="old_{setting.id}" value="{setting.value}"/>
+            <div style="font-size:x-small;">Auswahl:</div>
+
+            <select class="form-control" id="doubleselect_{setting.id}" name="sel_ds1_{setting.id}" size="6"
+                    onclick="double_select_add(this.options[parseInt(this.selectedIndex)].text, this.options[parseInt(this.selectedIndex)].value, 'sel_ds2_{setting.id}', '{setting.id}');"
+                    onkeydown="if(event.keyCode == 13 || event.which == 13) {double_select_add(this.options[parseInt(this.selectedIndex)].text, this.options[parseInt(this.selectedIndex)].value, 'sel_ds2_{setting.id}', '{setting.id}');}">
+                <f:for each="{setting.options}" as="option" key="key">
+                    <option value="{key}">{option -> f:format.raw()}</option>
+                </f:for>
+            </select>
+        </div>
+        <div class="col-sm-6">
+            <div style="font-size:x-small;">Zugewiesen:</div>
+            <select class="form-control" name="sel_ds2_{setting.id}" size="6">
+                <f:for each="{setting.chosen}" as="option" key="key">
+                    <option value="{key}">{option -> f:format.raw()}</option>
+                </f:for>
+            </select>
+            <div style="font-size:x-small;">&nbsp;</div>
+            <button class="btn btn-default btn-xs" type="button"
+                    onclick="double_select_move('{setting.id}', 'top'); return false;" title="Ganz nach oben">
+                <span class="fa fa-angle-double-up"></span>
+            </button>
+
+            <button class="btn btn-default btn-xs" type="button"
+                    onclick="double_select_move('{setting.id}', 'up'); return false;" title="Nach oben">
+                <span class="fa fa-angle-up"></span>
+            </button>
+
+            <button class="btn btn-danger btn-xs" type="button"
+                    onclick="double_select_move('{setting.id}', 'del'); return false;" title="Entfernen">
+                <span class="fa fa-trash"></span>
+            </button>
+
+            <button class="btn btn-default btn-xs" type="button"
+                    onclick="double_select_move('{setting.id}', 'down'); return false;" title="Nach unten">
+                <span class="fa fa-angle-down"></span>
+            </button>
+
+            <button class="btn btn-default btn-xs" type="button"
+                    onclick="double_select_move('{setting.id}', 'bottom'); return false;" title="Ganz nach unten">
+                <span class="fa fa-angle-double-down"></span>
+            </button>
+
+
+        </div>
+    </div>
+</div>

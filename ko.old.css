@@ -1,0 +1,286 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+/* 
+ * lokale Anpassungen 
+ */
+
+* {
+	font-family: Open Sans,Verdana,Arial,Helvetica,sans-serif;
+	font-size: 11px;	
+}
+
+body {
+	background-color: black;
+	color: white;
+	
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: 11px;
+	
+	margin: 0;
+}
+
+/* login form */
+
+#login {
+	line-height: 20px;
+	height: 25px;
+	margin: 2px 0 2px 0;
+	padding: 0 0 0 2px;
+}
+
+#login input[type="button"], #login input[type="submit"], #login a {
+	background:none repeat scroll 0 0 #494949;
+	border:1px solid #636363;
+	color:#FFFFFF;
+	cursor:pointer;
+	text-align:center;
+}
+
+#login a {
+	padding: 2px;
+}
+
+#login a i {
+	font-style: normal;
+}
+
+#login b {
+	padding-left: 15px;
+	background: transparent url(images/icon_login_enable.png) no-repeat left top;
+}
+
+#login br {
+	display: none;
+}
+
+#login td {
+	height: auto !important;
+}
+
+#kool-text {
+	display: none;
+}
+
+#lang-select {
+	display: none;
+}
+
+/* main menu */
+#header, #login, #lang-select , #header td{
+	height: auto !important;
+}
+
+#nav {
+	background-image: none;
+	background-color: #585858;
+	padding: 0;
+	margin: 0;
+}
+
+#nav a, #nav a.first {
+	background-image: none;
+	background-color: #585858;
+	font-size: 11px;
+	padding: 5px 10px 0 10px;
+}
+
+#nav a.akt, #nav a.post_akt {
+	background-image: none;
+}
+
+
+#nav li.akt, #nav a.akt {
+	background-color: #F1F1F1;
+	color: black;
+	font-weight: bold;
+}
+
+#nav a:hover {
+	background-color: #BFBFBF;
+	color: black;
+	font-weight: bold;
+}
+
+#nav li ul {
+	background-color: #BFBFBF;
+	border: 0;
+	margin-top: 20px;
+}
+
+#nav li ul a {
+	background-color: #BFBFBF;
+	margin-bottom: 1px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+}
+
+#nav li ul a:hover {
+	background-color:#F1F1F1;
+	border-bottom:1px solid #B8B8B8;
+	border-top:1px solid #B8B8B8;
+	color: black;
+	font-weight: bold;
+}
+
+#nav li ul li.header {
+	color:#252524;
+	background-color: #BFBFBF;
+	border-bottom: dotted 1px #636363;
+	cursor:pointer;
+	font-weight:bold;
+	text-transform:uppercase;	
+}
+
+/* sidebars */
+
+td.main_left, td.main_right {
+	background-color: #dddddd;
+	color: black;
+}
+
+/* submenu  */
+
+
+td.submenu_header {
+	border: 0;
+	background-image: none;
+	background-color: transparent;
+	text-align: left;
+	text-transform: uppercase;
+	color: black;
+	font-weight: bold;
+	padding-left: 0;
+}
+
+td.submenu {
+	padding-left: 15px;
+	border: 0;
+	border-bottom:1px solid #C7C7C7;
+}
+
+.submenu strong {
+	display: none;
+}
+
+.submenu a {
+	width: 100%;
+	height: auto;
+	line-height: 20px;
+	background: transparent url(images/module-menu-right.png) no-repeat left 7px; 
+	padding: 5px 5px 5px 15px;
+	margin-bottom: 1px;
+	font-size: 11px;
+	color: black;	
+}
+
+.submenu a:link {
+	color: black;
+}
+
+.submenu a:hover {
+	background-color: #f1f1f1;
+	font-weight: bold;
+	border-top: solid 1px #c7c7c7;
+	border-bottom: solid 1px #c7c7c7;
+}
+
+#sm, #sm ul {
+	background-color: transparent;
+}
+
+/* main content */
+
+td.main {
+	background-color: #f1f1f1;
+	color: black;
+}
+
+td.main table {
+	background-color: #dadada;
+}
+ 
+td.subpart_header {
+	width: 95%;
+	background-color: #dadada;
+	background-image: none;
+	text-align: left;
+	color: black;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 3px 0 3px 5px;
+	margin-bottom: 10px;
+}
+
+td.main table td.subpart {
+	background-color: #f1f1f1;
+	border: none;
+}
+
+td.main table td.subpart table {
+	background-color: #f1f1f1;
+}
+
+td.main table td.subpart table table {
+	background-color: transparent;
+}
+
+/* infotext
+ *  
+ */
+
+.infotxt {
+	background: #9AEA9A url(images/icon_ok2.gif) no-repeat 5px 5px;
+	padding: 5px 0 5px 25px;
+	border: solid 1px green; 	
+}
+
+.errortxt {
+	background: #ea9a9a url(images/icon_fatalerror.gif) no-repeat 5px 5px;
+	padding: 5px 0 5px 25px;
+	border: solid 1px red; 		
+}
+
+/* forms
+ * 
+ */
+
+.subpart table {
+	border-collapse:collapse;
+}
+.formular_header {
+	background-color:#B8BEC9;
+	background-image:url("../../typo3/sysext/t3skin/icons/gfx/alt_menu_mainitem_bg.gif");
+	background-position:left top;
+	background-repeat:repeat-x;
+	line-height: 14px;
+	color: white;	
+	border:1px solid #A2AAB8;
+}
+
+.formular_content {
+	background-color: #e8e8e8;
+	background:none repeat scroll 0 0 #EFEFF4;
+	border:1px solid #A2AAB8;
+}
+
+
+#session_timeout {
+	color: black;
+}
+
+
+.form_grouptitel {
+font-weight: 900;
+font-size: 16px;
+display: block;
+padding-top: 15px;
+padding-bottom: 5px;
+cursor: pointer;
+color: white;
+background-color: darkgray;
+border-bottom: solid 2px black;
+}
+
+.rota-event-header {
+    border-bottom: 0;
+}

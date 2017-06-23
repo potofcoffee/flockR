@@ -1,0 +1,71 @@
+font:
+    Überschrift1:
+        name: Open Sans Extrabold
+        size: 22
+        bold: true
+    Überschrift2:
+        name: Open Sans Demibold
+        size: 12
+        bold: true
+    Standard:
+        name: Open Sans
+        size: 9
+        bold: false
+    fntAbschnittTitel:
+        bold: true
+        align: center
+        name: Open Sans Extrabold
+        size: 11
+        smallCaps: true
+        bgColor: #CCCCCC
+    fntAbschnittPlan1:
+        bold: true
+        align: left
+    fntAbschnittPlan2:
+        bold: false
+        align: left
+paragraph:
+    AbsÜberschrift1:
+        align: center
+    AbsÜberschrift2:
+        align: center
+    AbsÜberschriftKlein:
+        align: center
+    AbsAbschnittTitel:
+        align: center
+        bgColor: CCCCCC
+table:
+    AbschnittTitel:
+        table:
+            borderColor: #000000
+            borderSize: 0
+        firstRow:
+            bgColor: CCCCCC
+            borderSize: 6
+    AbschnittPlan:
+        table:
+            borderColor: 000000
+            borderSize: 6
+        firstRow:
+            bgColor: #fffff
+cell:
+    default:
+        valign: top
+        align: right
+        border-top:
+        borderSize: 6
+    header:
+        valign: top
+        align: center
+        borderTopSize: 6
+        borderTopColor: 000000;
+        borderLeftSize: 6
+        borderLeftColor: 000000;
+        borderBottomSize: 6
+        borderBottomColor: 000000;
+        borderRightSize: 6
+        borderRightColor: 000000;
+        bgColor: CCCCCC
+    HCentered:
+        align: center
+            

@@ -1,0 +1,15 @@
+<div id="{id}" class="ajax-area">
+    <div class="ajax-placeholder">
+    </div>
+</div>
+<script type="text/javascript">
+    var ajaxUrl = '{route}';
+    var ajaxArea = '#{id}';
+    var ajaxData = {arguments -> f:format.raw()};
+    $(document).ready(function() {
+        $.get(ajaxUrl, ajaxData, function(data) {
+            $(ajaxArea).html(data);
+            <f:if condition="{onLoad}">{onLoad -> f:format.raw()}</f:if>
+        })
+    });
+</script>

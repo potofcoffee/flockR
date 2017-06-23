@@ -1,0 +1,15 @@
+<div class="panel panel-default" xmlns:fx="Peregrinus\Flockr\Core\ViewHelpers">
+    <div class="panel-heading">
+        <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#pm_calendar">
+                {time -> f:format.date(format: '%B %Y')}
+            </a>
+        </h5>
+    </div>
+    <div id="pm_calendar" class="panel-collapse collapse in">
+        <div class="panel-body">
+            {calendar -> f:format.raw()}
+        </div>
+    </div>
+</div>
+</div>

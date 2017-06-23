@@ -1,0 +1,8 @@
+credentials:
+  user: christoph.fischer@volksmission.de
+  password: infobahn
+loginUrl:
+services:
+  SongSelect:
+    loginUrl: https://profile.ccli.com/
+    baseUrl: https://songselect.ccli.com

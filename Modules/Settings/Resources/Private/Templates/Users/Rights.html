@@ -1,0 +1,66 @@
+<f:layout name="Default"/>
+<f:section name="Main">
+    <div xmlns:fx="Peregrinus\Flockr\Core\ViewHelpers">
+        <h1 class="page-header">Benutzerrechte für {user.login}</h1>
+        <f:if condition="{groups}">
+            <div class="well">
+                <h4>{user.login} ist Mitglied folgender Benutzergruppen:</h4>
+                <f:for each="{groups}" as="group" iteration="i">
+                    {group.title -> f:format.raw()}<f:if condition="{i.isLast}"><f:else>, </f:else></f:if>
+                </f:for>
+            </div>
+        </f:if>
+
+        <form method="post" action="{FLOCKR_baseUrl}settings/users/editRights/{user.id}">
+
+            <ul class="nav nav-tabs">
+                <f:for each="{modules}" as="module">
+                    <f:if condition="{module.objects}">
+                        <f:if condition="{module.levels}">
+                            <li>
+                                <a data-toggle="tab" href="#tab{module.module.name}">
+                                    {module.module.name}
+                                </a>
+                            </li>
+                        </f:if>
+                    </f:if>
+                </f:for>
+            </ul>
+
+            <div class="tab-content">
+                <f:for each="{modules}" as="module" iteration="i">
+                    <f:if condition="{module.objects}">
+                        <f:if condition="{module.levels}">
+                            <div id="tab{module.module.name}" class="tab-pane fade">
+                                <h2>Rechte für Modul "{module.module.name}"</h2>
+                                <f:for each="{module.objects}" as="object">
+                                    <div class="form-group">
+                                        <label for="permissions[{module.module.name}][{object}]">
+                                            {object}
+                                        </label>
+                                        <select class="form-control" name="permissions[{module.module.name}][{object}]">
+                                            <option value=""></option>
+                                            <f:for each="{module.levels}" as="level" key="levelId">
+                                                <f:alias map="{permission: '{fx:security.permission(module: \'{module.module.name}\', object: \'{object}\', user: \'{user.id}\')}'}">
+                                                    <option value="{levelId}" {f:if(condition: '{0: permission} == {0: levelId}', then: ' selected')}>{level}</option>
+                                                </f:alias>
+                                            </f:for>
+                                        </select>
+                                    </div>
+                                </f:for>
+
+                            </div>
+                        </f:if>
+                    </f:if>
+                </f:for>
+            </div>
+
+
+            <hr/>
+            <input type="submit" class="btn btn-primary" value="Speichern"/>
+            <a role="button" class="btn btn-default" href="{FLOCKR_baseUrl}settings/users/list">Abbrechen</a>
+
+        </form>
+
+    </div>
+</f:section>

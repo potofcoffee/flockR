@@ -1,0 +1,16 @@
+<div class="panel panel-default" xmlns:fx="Peregrinus\Flockr\Core\ViewHelpers">
+    <div class="panel-heading">
+        <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#pm_calendar">
+                Personensuche
+            </a>
+        </h5>
+    </div>
+    <div id="pm_calendar" class="panel-collapse collapse in">
+        <div class="panel-body">
+            <form action="leute/index.php?action=set_fastfilter" method="POST">
+                {content -> f:format.raw()}
+            </form>
+        </div>
+    </div>
+</div>

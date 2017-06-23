@@ -1,0 +1,51 @@
+body.dragging, body.dragging * {
+    cursor: move !important;
+}
+
+.dragged {
+    position: absolute;
+    opacity: 0.5;
+    z-index: 2000;
+}
+
+ul#agenda-plan li.placeholder {
+    position: relative;
+    /** More li styles **/
+}
+ul#agenda-plan li.placeholder:before {
+    position: absolute;
+    /** Define arrowhead **/
+}
+
+ul#agenda-plan li {
+    padding: 8px;
+    box-shadow: darkgray 1px 1px;
+    border-radius: 5px;
+    border: solid 1px darkgray;
+    margin-bottom: 2px;
+    list-style: none;
+    padding-bottom: 20px;
+}
+
+ul#agenda-plan li {
+    background-color: lightcyan;
+    margin-bottom: 15px;
+}
+
+ul#agenda-plan li li {
+    background-color: lightblue;
+    margin-bottom: 2px;
+}
+
+ul#agenda-plan li li li {
+    background-color: lightskyblue;
+}
+
+.fa-arrows {
+    cursor: move;
+}
+
+.fa-trash {
+    cursor: pointer;
+    color: red;
+}

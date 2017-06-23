@@ -1,0 +1,8 @@
+id: settings
+name: Einstellungen
+link:
+menu:
+  - name: Benutzer verwalten
+    link: /settings/users/list
+    controller: Users
+    action: rights

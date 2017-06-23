@@ -1,0 +1,59 @@
+body {
+    font-family: 'Open Sans';
+    font-size: 9pt;
+}
+
+h1 {
+    width: 100%;
+    font-family: 'Open Sans Extrabold';
+    font-weight: normal;
+    border-bottom: solid 1px black;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.rotaTable {
+    margin-top: 1cm;
+}
+
+.rotaTable tr:first-child {
+    padding-bottom: 5px;
+}
+
+.rotaTable th {
+    font-weight: bold;
+    text-align: left;
+}
+
+.rotaTable th small {
+    font-weight: normal;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.rotaTable td, th {
+    border-bottom: solid 1px #dddddd;
+}
+
+.rotaTable tr.comment td {
+    font-size: 8pt;
+    font-style: italic;
+}
+
+.footerTable {
+    margin-top: 1cm;
+}
+
+.footerTable td, .footerTable th {
+    font-size: 7px;
+    color: #555555;
+}
+
+.footerTable td.right {
+    text-align: right;
+}
+

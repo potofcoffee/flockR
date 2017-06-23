@@ -1,0 +1,51 @@
+body {
+    font-family: 'Open Sans';
+    font-size: 9pt;
+}
+
+h1 {
+    width: 100%;
+    font-family: 'Open Sans Extrabold';
+    font-weight: normal;
+    border-bottom: solid 1px black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid darkgray;
+}
+
+td.date {
+    min-width: 1cm !important;
+    max-width: 1cm !important;
+    width: 1cm !important;
+    border-right: 0;
+}
+
+td.content {
+    min-width: 3.4cm !important;
+    max-width: 3.4cm !important;
+    width: 3.4cm !important;
+    border-left: 0;
+}
+
+
+td.vacation {
+    background-color: #ddffdd;
+}
+
+
+td.sunday, .sunday.vacation {
+    background-color: #ffaaaa !important;
+}
+
+span.churchYear {
+    font-size: 6px;
+}
+
+span.event {
+    font-size: 7px;
+}

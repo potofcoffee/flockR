@@ -1,0 +1,56 @@
+<f:layout name="Default"/>
+
+<f:section name="sidebar">
+    <f:for each="{options}" as="optionPage" iteration="i">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#panel_{optionPage.id}">{optionPage.title}</a>
+                </h5>
+            </div>
+            <div id="panel_{optionPage.id}" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <ul class="sidebar-submenu">
+                        <f:for each="{optionPage.settings}" as="group" iteration="j">
+                            <li id="menu_{group.id}"{f:if(condition:
+                            '{0: i.cycle, 1: j.cycle} == {0:1, 1:1}', then: 'class="active"')}><a href="#{group.id}"
+                                                                                                  data-toggle="{group.id}">{group.title}</a></li>
+                        </f:for>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </f:for>
+</f:section>
+
+
+<f:section name="main">
+    <form action="{flockr.baseUrl}core/admin/setPreferences" method="post">
+        <f:for each="{options}" as="optionPage" iteration="i">
+            <div class="options-page">
+                <f:for each="{optionPage.settings}" as="settingsGroup" iteration="j">
+                    <div id="group_{settingsGroup.id}" class="settings-group">
+                        <div class="page-header">
+                            <span class="fa fa-user"></span> <i>Persönliche Einstellungen für Benutzer "{user.login}"</i>
+                            <h1>{settingsGroup.title}</h1>
+                        </div>
+                        <f:if condition="{settingsGroup.settings}">
+                            <f:then>
+                                <f:for each="{settingsGroup.settings}" as="setting">
+                                    <f:render partial="Settings/Setting"
+                                              arguments="{setting: setting, mode: 'global'}"/>
+                                </f:for>
+                            </f:then>
+                            <f:else>In diesem Bereich kannst du momentan nichts einstellen.</f:else>
+                        </f:if>
+                    </div>
+                </f:for>
+            </div>
+        </f:for>
+        <hr/>
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Speichern"/>
+        </div>
+    </form>
+</f:section>

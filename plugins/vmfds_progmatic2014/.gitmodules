@@ -1,0 +1,3 @@
+[submodule "lib/progmatic"]
+	path = lib/progmatic
+	url = git@github.com:VolksmissionFreudenstadt/php_progmatic2014.git

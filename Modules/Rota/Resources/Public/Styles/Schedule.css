@@ -1,0 +1,59 @@
+.schedule .schedule-planning-area {
+    font-size: 0.8em;
+
+}
+
+.schedule .schedule-block {
+    border: dotted 1px lightgrey;
+    border-radius: 5px;
+    padding: 5px;
+    min-height: 150px;
+    border: solid 2px white;
+}
+
+.schedule .schedule-block .schedule-block-title {
+    min-height: 40px;
+    font-weight: bold;
+}
+
+.schedule .schedule-block-filled {
+    background-color: #dff0d8;
+}
+
+.schedule .schedule-block-empty {
+    background-color: #d9534f;
+}
+
+.schedule .schedule-block-unlocked.schedule-block-filled:hover,
+.schedule .schedule-block-unlocked.schedule-block-empty:hover {
+    border-color: black;
+}
+
+.schedule .schedule-block-filled.schedule-block-locked,
+.schedule .schedule-block-empty.schedule-block-locked
+{
+    background-color: lightgrey !important;
+}
+
+
+
+.schedule-event-date {
+    text-align: center;
+}
+
+.schedule .schedule-entry {
+    border: solid 1px lightgrey;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 1px;
+    background-color: lightgrey;
+}
+
+#modal-event-schedule-header {
+    font-size: 20px;
+    line-height: 20px;
+}
+
+#modal-event-schedule-header small {
+    font-size: 14px;
+}

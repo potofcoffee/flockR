@@ -1,0 +1,18 @@
+# Configure rooms to be heated here
+# Rooms, which are not defined here, will not be exported
+rooms:
+    #the id of the reservation object    
+    5: 
+        #number (0-9) of the profile on the usb stick
+        profile: 1
+        #name of the profile (max. 32 characters)
+        name: Lila Saal
+        #number of minutes to pre-heat before the reservation starts
+        preheat: 60
+        #number of minutes to post-heat after the reservation ends
+        postheat: 20
+        #lock thermostat keys?
+        lock: 1
+        high: 21
+        low: 17
+    

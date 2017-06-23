@@ -1,0 +1,93 @@
+<f:layout name="Default"/>
+<f:section name="main">
+    <div class="page-header">
+        <h1>Übersicht der Gottesdienste</h1>
+    </div>
+    <button class="btn btn-default hidden-print" id="btnEditMultipleServices"><span class="fa fa-edit"></span> Bearbeiten</button>
+    <form method="post" action="{flockr.baseUrl}rota/rota/batchUpdateServices">
+        <div class="edit-only form-group">
+            <input class="btn btn-primary" type="submit" value="Speichern"/>
+            <hr/>
+        </div>
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th width="10%">Datum</th>
+                <th width="15%">Anlass</th>
+                <th width="15%">Bemerkungen</th>
+                <th width="20%">Prediger</th>
+                <th width="20%">Thema</th>
+                <th width="20%">Reihe</th>
+            </tr>
+            </thead>
+            <tbody>
+            <f:for each="{events}" as="event" iteration="i">
+                <tr>
+                    <td>{event.startdatum -> f:format.date(format: '%d.%m.%Y')}<br/>
+                        <small><i>
+                            <fx:churchYear date="{event.startdatum}"/>
+                        </i></small><br />
+                        <a href="#" class="btn btn-default btn-xs btnToggleRow hidden-print" data-row="{i.cycle}" title="Gottesdienst bearbeiten"><span class="fa fa-edit"></span></a>
+                        <button class="btn btn-primary btn-xs btnSaveRow plan-row-{i.cycle}  hidden-print" type="submit"><span class="fa fa-save"></span></button>
+                        <a href="../../daten/index.php?action=edit_termin&id={event.id}" class="btn btn-default btn-xs hidden-print" data-row="{i.cycle}" title="Termin bearbeiten" target="_blank"><span class="fa fa-calendar"></span></a>
+                    </td>
+                    <td>
+                        <div class="display-only plan-row-{i.cycle}">
+                            <small>{event.kommentar}</small>
+                        </div>
+                        <div class="edit-only form-group plan-row-{i.cycle}">
+                            <label for="events[{event.id}][kommentar]">Anlass</label>
+                            <textarea class="form-control" name="events[{event.id}][kommentar]">{event.kommentar}</textarea>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-only plan-row-{i.cycle}">
+                            <small>{event.kommentar2}</small>
+                        </div>
+                        <div class="edit-only form-group plan-row-{i.cycle}">
+                            <label for="events[{event.id}][kommentar2]">Anmerkung</label>
+                            <textarea class="form-control" name="events[{event.id}][kommentar2]">{event.kommentar2}</textarea>
+                        </div>
+                    </td>
+                    <td {f:if(condition: event.rota.2, else:
+                    'style="background-color:red"')}>
+                    <f:for each="{event.rota.2}" as="entry">
+                        {entry}<br/>
+                    </f:for>
+                    </td>
+                    <td>
+                        <div class="display-only plan-row-{i.cycle}">
+                            {event.title}
+                        </div>
+                        <div class="edit-only form-group plan-row-{i.cycle}">
+                            <label for="events[{event.id}][title]">Titel</label>
+                            <input class="form-control" type="text" name="events[{event.id}][title]"
+                                   value="{event.title}"/>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-only plan-row-{i.cycle}">
+                            {event.my_vmfds_events_series_title}
+                            <f:if condition="{event.my_vmfds_events_reference}"><br />({event.my_vmfds_events_reference})</f:if>
+                        </div>
+                        <div class="edit-only form-group plan-row-{i.cycle}">
+                            <label for="events[{event.id}][my_vmfds_events_series_title]">Reihe</label>
+                            <input class="form-control" type="text" name="events[{event.id}][my_vmfds_events_series_title]"
+                                   value="{event.my_vmfds_events_series_title}"/>
+                        </div>
+                        <div class="edit-only form-group plan-row-{i.cycle}">
+                            <label for="events[{event.id}][my_vmfds_events_reference]">Bibelstelle</label>
+                            <input class="form-control" type="text" name="events[{event.id}][my_vmfds_events_reference]"
+                                   value="{event.my_vmfds_events_reference}"/>
+                        </div>
+
+                    </td>
+                </tr>
+            </f:for>
+            </tbody>
+        </table>
+    </form>
+</f:section>
+<f:section name="sidebar">
+
+</f:section>

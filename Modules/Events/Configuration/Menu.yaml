@@ -1,0 +1,21 @@
+id: events
+name: Events
+link:
+menu:
+  - name: Neue Gruppe
+    link: /events/eventGroup/new
+    controller: EventGroup
+    action: new
+  - name: Gruppen anzeigen
+    link: /events/eventGroup/list
+    controller: EventGroup
+    action: list
+  - name: Google-Kalender hinzufügen
+    link: /events/eventGroup/newGCal
+    controller: EventGroup
+    action: newGCal
+  - name: iCal-Kalender hinzufügen
+    link: /events/eventGroup/newICal
+    controller: EventGroup
+    action: newICal
+

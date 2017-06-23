@@ -1,0 +1,17 @@
+{
+    "name": "vmfds/kool-vmfds-events",
+    "description": "kOOL plugin: vmfds_events.",
+    "authors": [
+        {
+            "name": "Christoph Fischer",
+            "email": "chris@toph.de"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "VMFDS\\Kool\\": "Framework/",
+            "VMFDS\\Kool\\Events\\": "Classes/"
+        }
+    }
+}

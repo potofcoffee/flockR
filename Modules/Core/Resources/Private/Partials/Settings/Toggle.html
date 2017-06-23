@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label>{setting.label -> f:format.raw()}</label>
+    <input type="hidden" name="{setting.id}" value="{setting.values.0}" />
+    <div class="toggle-switch pull-right">
+        <input id="{setting.id}" name="{setting.id}" type="checkbox" value="{setting.values.1}" {f:if(condition: '{0: setting.value} == {0: setting.values.1}', then: 'checked')} />
+        <label for="{setting.id}" class="label-default"></label>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<f:switch expression="{field.type}">
+    <f:case value="text">
+        <f:render partial="KOTA/FormFields/Text" arguments="{field: field, prefix: prefix}" />
+    </f:case>
+    <f:case value="select">
+        <f:render partial="KOTA/FormFields/Select" arguments="{field: field, prefix: prefix}" />
+    </f:case>
+</f:switch>

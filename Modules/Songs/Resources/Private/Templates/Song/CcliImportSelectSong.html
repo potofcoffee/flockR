@@ -1,0 +1,40 @@
+<f:layout name="Default" />
+<f:section name="Main">
+    <div class="page-header">
+        <h1>Suchergebnisse</h1>
+    </div>
+    <f:if condition="{song}">
+        <div class="row">
+            <div class="col-sm-3">
+                <h3>{song.meta.title}</h3>
+                <f:for each="{song.units}" as="unit">
+                    <hr />{unit -> f:format.raw()}
+                </f:for>
+            </div>
+            <div class="col-sm-9">
+    </f:if>
+    <h2>Ergebnisse für "{q}"</h2>
+    <f:if condition="{result}">
+        <f:then>
+            <table class="table table-striped table-bordered table-hover table-condensed">
+            <f:for each="{result}" as="item">
+                <tr>
+                    <td class="get-songdata" data-song="{item}"><span class="fa fa-spinner fa-spin"></span> Bitte warten, Daten für das Lied mit der CCLI-Nummer {item} werden geladen...</td>
+                    <td>
+                        <f:if condition="{song}">
+                            <f:then>
+                                <a class="btn btn-primary" href="/songs/song/{next}?song={item}&file={song.file}">Auswählen</a></td>
+                            </f:then>
+                            <f:else>
+                                <a class="btn btn-primary" href="/songs/song/{next}?song={item}">Auswählen</a></td>
+                            </f:else>
+                        </f:if>
+                </tr>
+            </f:for>
+            </table>
+        </f:then>
+    </f:if>
+    <f:if condition="{song}">
+        </div></div>
+    </f:if>
+</f:section>

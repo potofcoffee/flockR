@@ -1,0 +1,36 @@
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+    <h1 class="page-header">Termingruppen</h1>
+    <div class="table-responsive" xmlns:fx="Peregrinus\Flockr\Core\ViewHelpers">
+        <table class="table table-striped table-condensed table-hover flockr-action-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Kalender</th>
+                    <th>Farbe</th>
+                    <th>Titel</th>
+                    <th>Beschreibung</th>
+                    <th>DP</th>
+                    <th>Res. komb.</th>
+                    <th>Mod.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <f:for each="{groups}" as="group">
+                    <tr data-module="events" data-controller="eventGroup" data-action="edit" data-identifier="eventGroup" data-id="{group.id}" data-arguments="{}">
+                        <td>{group.groupTitle}</td>
+                        <td>{group.calendar.title}</td>
+                        <td><fx:colorLabel>{group.color}</fx:colorLabel></td>
+                        <td>{group.title}</td>
+                        <td>{group.description}</td>
+                        <td><f:if condition="{group.rota}"><f:then>ja</f:then><f:else>nein</f:else></f:if></td>
+                        <td><f:if condition="{group.reservationsCombined}"><f:then>ja</f:then><f:else>nein</f:else></f:if></td>
+                        <td><f:if condition="{group.moderation}"><f:then>ja</f:then><f:else>nein</f:else></f:if></td>
+                    </tr>
+                </f:for>
+            </tbody>
+        </table>
+    </div>
+</f:section>

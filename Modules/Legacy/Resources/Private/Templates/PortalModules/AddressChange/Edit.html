@@ -1,0 +1,19 @@
+<div class="page-header"><h1>
+    Adressänderung melden
+</h1></div>
+<h2>Personendaten für {person.vorname} {person.nachname}</h2>
+<div class="alert alert-info">
+    Bitte fülle nur die Felder aus, für die es geänderte Daten gibt.
+</div>
+<form method="post" action="index.php">
+    <input type="hidden" name="portalModule[addressChange][action]" value="save" />
+    <input type="hidden" name="portalModule[addressChange][id]" value="{person.id}" />
+    <input type="hidden" name="portalModule[addressChange][firstName]" value="{person.vorname}" />
+    <input type="hidden" name="portalModule[addressChange][lastName]" value="{person.lastname}" />
+
+    <f:for each="{fields}" as="field">
+        <f:render partial="KOTA/FormField" arguments="{field: field, prefix: 'portalModule[AddressChange][person]'}" />
+    </f:for>
+
+    <input class="btn btn-primary" type="submit" value="Speichern"/>
+</form>

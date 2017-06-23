@@ -1,0 +1,20 @@
+Peregrinus\Flockr\Songs\Domain\Song:
+  properties:
+    meta.langcount:
+      title: Sprachen
+    meta.ccli:
+      title: CCLI-Nummer
+    meta.title:
+      title: Titel
+    meta.author:
+      title: Author
+    meta.(c):
+      title: Copyrights
+    meta.categories:
+      title: Kategorien
+    meta.key:
+      title: Tonart
+    file:
+      title: Datei
+    preview:
+      title: Vorschau

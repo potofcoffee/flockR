@@ -1,0 +1,11 @@
+<div class="portal-module">
+    <f:if condition="{isGuest}">
+        <f:then>
+            <div class="page-header"><h1>Herzlich willkommen!</h1></div>
+            {welcomeGuest -> f:format.raw()}
+        </f:then>
+        <f:else>
+            <div class="page-header"><h1>Willkommen!</h1></div>
+        </f:else>
+    </f:if>
+</div>

@@ -1,0 +1,27 @@
+Peregrinus\Flockr\Core\Domain\Group:
+  type: entity
+  table: ko_groups
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    parent:
+      type: integer
+      column: pid
+    title:
+      type: string
+      column: name
+    viewRights:
+      type: string
+      column: rights_view
+    editRights:
+      type: string
+      column: rights_edit
+    createRights:
+      type: string
+      column: rights_new
+    deleteRights:
+      type: string
+      column: rights_del

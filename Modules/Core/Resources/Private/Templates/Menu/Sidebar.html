@@ -1,0 +1,23 @@
+<div name="sm_{module}_{menu.id}" id="sm_{module}_{menu.id}" class="panel panel-default">
+    <div class="panel-heading">
+        <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#sm_{module}_{menu.id}_collapse">
+                {menu.name}
+            </a>
+        </h5>
+    </div>
+    <div id="sm_{module}_{menu.id}_collapse" class="panel-collapse collapse">
+        <div class="panel-body">
+            <ul class="sidebar-submenu">
+                <f:for each="{menu.menu}" as="item">
+                    <f:if condition="{item.link}">
+                        <f:then>
+                            <li><a href="{item.link}">{item.name -> f:format.raw()}</a></li>
+                        </f:then>
+                    </f:if>
+                </f:for>
+            </ul>
+        </div>
+    </div>
+</div>
+

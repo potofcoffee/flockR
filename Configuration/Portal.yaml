@@ -1,0 +1,17 @@
+modules:
+  user:
+    sidebar:
+      - addressSearch
+      - calendar
+      - birthdays
+    main:
+      - welcome
+      - addressChange
+      - today
+  guest:
+    sidebar:
+      - login
+    main:
+      - welcome
+      - addressChange
+

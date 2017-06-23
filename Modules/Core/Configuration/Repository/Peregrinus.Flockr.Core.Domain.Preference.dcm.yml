@@ -1,0 +1,9 @@
+Peregrinus\Flockr\Core\Domain\Preference:
+  type: entity
+  table: ko_settings
+  id:
+    key:
+      type: string
+  fields:
+    value:
+      type: string

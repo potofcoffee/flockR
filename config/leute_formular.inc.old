@@ -1,0 +1,44 @@
+<?php
+$FAMILIE_EXCLUDE  = array("famid", "nachname");
+
+$LEUTE_ENUMPLUS = array();
+$LEUTE_TEXTSELECT = array('land', 'land_g');
+$LEUTE_LAYOUT   = array(
+	array('---Angaben zur Person'),
+	array("hidden"),
+	array("anrede", "geschlecht"),
+	array("vorname", "nachname"),
+	array("geburtsdatum", "zivilstand"),
+	array('---Private Kontaktdaten'),
+	array("adresse", "adresse_zusatz"),
+	array("plz", "ort"),
+	array("land"),
+	array("---"),
+	array("telp", "natel"),
+	array("email", "fax"),
+	array("web"),
+	array('---Geschäftliche Kontaktdaten'),
+	array("firm", "department"),
+	array("adresse_g", "adresse_zusatz_g"),
+	array("plz_g", "ort_g"),
+	array("land_g"),
+	array("---"),
+	array('telg','natel_g'),
+	array("email_g", "fax_g"),
+	array("web_g"),
+	array("---Soziale Netzwerke"),
+	array('facebook', 'twitter'),
+    array('myspace','linkedin'),
+    array('kwick'),
+    array('---'),
+    array("MODULE::save"),
+	array('---Gruppen'),
+	array("MODULE::groups"),
+	array("---"),
+	array("MODULE::save"),
+	array('---Kleingruppe'),
+	array("smallgroups"),
+	array("---Notizen"),
+	array("memo1", "memo2"),
+);
+?>

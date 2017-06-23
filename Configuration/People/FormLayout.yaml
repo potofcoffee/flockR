@@ -1,0 +1,116 @@
+######## FORM LAYOUT FOR PEOPLE MODULE
+
+familieExclude:
+ - famid
+ - nachname
+
+leuteEnumplus:
+  -
+
+leuteTextselect:
+  - land
+  - land_g
+
+leuteLayout:
+  -
+    - '---Angaben zur Person'
+  -
+    - 'hidden'
+  -
+    - 'anrede'
+  -
+    - 'geschlecht'
+  -
+    - 'vorname'
+  -
+    - 'nachname'
+  -
+    - 'geburtsdatum'
+  -
+    - 'zivilstand'
+  -
+    - '---Private Kontaktdaten'
+  -
+    - 'adresse'
+  -
+    - 'adresse_zusatz'
+  -
+    - 'plz'
+  -
+    - 'ort'
+  -
+    - 'land'
+  -
+    - '---'
+  -
+    - 'telp'
+  -
+    - 'natel'
+  -
+    - 'email'
+  -
+    - 'fax'
+  -
+    - 'web'
+  -
+    - '---Geschäftliche Kontaktdaten'
+  -
+    - 'firm'
+  -
+    - 'department'
+  -
+    - 'adresse_g'
+  -
+    - 'adresse_zusatz_g'
+  -
+    - 'plz_g'
+  -
+    - 'ort_g'
+  -
+    - 'land_g'
+  -
+    - '---'
+  -
+    - 'telg'
+  -
+    - 'natel_g'
+  -
+    - 'email_g'
+  -
+    - 'fax_g'
+  -
+    - 'web_g'
+  -
+    - '---Soziale Netzwerke'
+  -
+    - 'facebook'
+  -
+    - 'twitter'
+  -
+    - 'myspace'
+  -
+    - 'linkedin'
+  -
+    - 'kwick'
+  -
+    - '---'
+  -
+    - 'MODULE::save'
+  -
+    - '---Gruppen'
+  -
+    - 'MODULE::groups'
+  -
+    - '---'
+  -
+    - 'MODULE::save'
+  -
+    - '---Kleingruppe'
+  -
+    - 'smallgroups'
+  -
+    - '---Notizen'
+  -
+    - 'memo1'
+  -
+    - 'memo2'

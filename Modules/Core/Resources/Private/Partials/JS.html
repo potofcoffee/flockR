@@ -1,0 +1,3 @@
+<f:for each="{scripts}" as="file">
+    <script src="{f:if(condition: '{file.external}', else: '{baseUrl}')}{file.href}{f:if(condition: '{file.external}', else: '?{fx:format.date(format: \'U\')}')}"></script>
+</f:for>

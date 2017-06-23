@@ -1,0 +1,84 @@
+Peregrinus\Flockr\Events\Domain\EventGroup:
+  type: entity
+  table: ko_eventgruppen
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    groupTitle:
+      type: string
+      column: name
+    shortTitle:
+      type: string
+      column: shortname
+    room:
+      type: string
+    startTime:
+      type: time
+      column: startzeit
+    endTime:
+      type: time
+      column: endzeit
+    title:
+      type: string
+    description:
+      type: string
+      column: kommentar
+    color:
+      type: string
+      column: farbe
+    reservations:
+      type: string
+      column: resitems
+    reservationStartTime:
+      type: time
+      column: res_startzeit
+    reservationEndTime:
+      type: time
+      column: res_endzeit
+    reservationsCombined:
+      type: integer
+      column: res_combined
+    rota:
+      type: integer
+    tapes:
+      type: integer
+    url:
+      type: string
+    moderation:
+      type: integer
+    notify:
+      type: string
+    type:
+      type: integer
+    gCalUrl:
+      type: string
+      column: gcal_url
+    facebookPages:
+      type: string
+      column: fb_pages
+    image:
+      type: string
+      column: my_vmfds_events_picture
+    iCalUrl:
+      type: string
+      column: ical_url
+    update:
+      type: integer
+    lastUpdate:
+      type: datetime
+      column: last_update
+    groupImage:
+      type: string
+      column: my_vmfds_events_announcement_group_image
+    skipListTitle:
+      type: integer
+      column: my_vmfds_events_skip_listtitle
+  manyToOne:
+    calendar:
+      targetEntity: Peregrinus\Flockr\Events\Domain\Calendar
+      joinColumn:
+        column: calendar_id
+        referencedColumnName: id

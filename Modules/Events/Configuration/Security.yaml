@@ -1,0 +1,13 @@
+access:
+  Events:
+    EventGroup:
+      new:
+        level: 10
+      list:
+        level: 10
+      edit:
+        level: 10
+      newGCal:
+        level: 10
+      newICal:
+        level: 10

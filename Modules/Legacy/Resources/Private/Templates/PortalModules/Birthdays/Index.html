@@ -1,0 +1,30 @@
+<div class="panel panel-default" xmlns:fx="Peregrinus\Flockr\Core\ViewHelpers">
+    <div class="panel-heading">
+        <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#pm_calendar">
+                <i class="fa fa-birthday-cake"></i> Geburtstage
+            </a>
+        </h5>
+    </div>
+    <div id="pm_calendar" class="panel-collapse collapse in">
+        <div class="panel-body">
+            <table class="table">
+                <tbody>
+                <f:for each="{people}" as="person">
+                    <tr>
+                        <td>
+                            <span class="label {f:if(condition: '{person.deadline} < 0', then: 'label-danger')} {f:if(condition: '{person.deadline} == 0', then: 'label-warning')} {f:if(condition: '{person.deadline} > 0', then: 'label-success')}">{person.deadline}</span>
+                        </td>
+                        <td>
+                            <a href="{person._link}">{person.vorname} {person.nachname}</a><br />
+                            <small>{person.geburtsdatum} ({person.alter})</small>
+                        </td>
+                    </tr>
+                </f:for>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+access:
+  Settings:
+    Users:
+      list:
+        level: 1
+      rights:
+        level: 4
+      editRights:
+        level: 4
+      edit:
+        level: 4
+      update:
+        level: 4

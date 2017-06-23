@@ -1,0 +1,5 @@
+ <div class="form-group">
+    <label for="{field.name}">{field.desc}</label>
+    <input class="form-control" type="text" size="20" name="{f:if(condition: prefix, then:'{prefix}[{field.name}]', else: '{field.name}')}"
+           value="{field.value}" {field.params}/>
+</div>

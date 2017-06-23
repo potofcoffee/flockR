@@ -1,0 +1,194 @@
+# HTML site title
+htmlTitle: Intranet der Volksmission Freudenstadt
+
+# enable the following legacy modules
+modules:
+  - daten
+  - reservation
+  - leute
+  - kg
+  - groups
+  - rota
+  - admin
+  - tools
+  - sms
+  - mailing
+  - gottesdienste
+  - core
+  - calendar
+
+# enable the following website languages
+webLangs:
+  - de_DE
+
+# get language setting from browser?
+getLangFromBrower: false
+
+################ Paths
+
+baseUrl: https://flockr.vmfds.de/
+basePath: /home/vmfredbb/flockr/
+smartyDir: /home/vmfredbb/flockr/
+includePathSmarty: /home/vmfredbb/flockr/smarty/libs
+webFoldersBase: /home/vmfredbb/flockr/webfolders/
+webFoldersBaseHtaccess: /home/vmfredbb/flockr/webfolders/
+
+################ Database
+
+# TODO: move to separate configuration
+database:
+  user: vmfredbb
+  pass: fdsvmec
+  host: localhost
+  name: usrdb_vmfredbb_kool
+  # driver string for new PDO access
+  dsn: 'mysql:host=localhost;dbname=usrdb_vmfredbb_kool;charset=UTF8'
+  init: "SET session.sql_mode = ''; SET NAMES 'utf8';"
+
+
+################ LDAP
+
+ldapEnabled: false
+ldapAdmin: kool_ldapadmin
+ldapAdminPw: fdsvmec
+ldapServer: ldap.vm-freudenstadt.de
+ldapDn: ou=freudenstadt,dc=volksmission,dc=de
+ldapSchema:
+  4: mozillaAbPersonAlpha
+ldapAttrib:
+  adresse:
+    - postalAddress
+    - street
+    - mozillaHomeStreet
+  adresse_zusatz:
+    - postalAddress
+    - mozillaHomeStreet2
+  plz:
+    - postalCode
+    - mozillaHomePostalCode
+  ort:
+    - l
+    - mozillaHomeLocalityName
+  web:
+    mozillaWorkUrl
+
+
+#SMS-Parameter
+smsParameter:
+  - user: volksmissionfds
+  - pass: 60LjsztkRFd4Y4kFXMyE
+  - api_id: 3246551
+  - sender_id:
+    - 491781766429
+
+#Fast-Filter (Filter-ID)
+fastFilterIds:
+  - 101
+
+plugins:
+  - name: map_search_ch
+    type: leute
+  - name: map24
+    type: leute
+  - name: maps_google
+    type: leute
+  - name: vmfds_ingresboard
+    type: groups
+  - name: address_map
+    type: leute
+  - name: vmfds_agende
+    type: rota
+  - name: vmfds_progmatic2014
+    type: reservation
+  - name: vmfds_events
+    type: daten
+
+
+# Family sort order
+famfunctionSortOrder:
+  - husband: 1
+  - wife: 2
+  - child: 3
+
+# Set additional email fields from DB.ko_leute ('email' is set by default)
+leuteEmailFields:
+
+# Add these columns to the address list export for children
+leuteExportChildrenColumns:
+  - _father
+  - _mother
+  - _natel
+  - _father_natel
+
+# Settings for mailing module
+mailingParameter:
+  - host: pop.gmail.com
+  - port: 995
+  - user: koolmail@intranet.vm-freudenstadt.de
+  - domain: intranet.vm-freudenstadt.de
+  - pass: oberkool
+  - ssl: true
+  - folder: INBOX
+  - return_path: volksmission-freudenstadt.de
+
+mailTransport:
+  - host: localhost
+  - port: 25
+
+pdflatexPath: /home/vmfredbb/usr/local/texlive2011/bin/i386-linux/
+
+# vmfds: leute
+leuteEmailFields:
+  - email
+  - email_g
+leuteMobileFields:
+  - natel
+  - natel_g
+colsLeuteLatexFrom:
+  - telg
+  - email_g
+
+# vmfds: ical feeds
+defaultTimezone: Europe/Berlin
+locale: de_DE.utf8
+
+vCardProperties:
+  fields:
+    fn:
+      - _:
+        sep: ' '
+      - vorname
+      - nachname
+
+    'ADR;WORK;POSTAL':
+      -
+      -
+      - adresse_g
+      - ort_g
+      - null
+      - plz_g
+      - land_g
+    'TEL;HOME;FAX':
+      - fax
+    'TEL;WORK;FAX':
+      - fax_g
+    'URL;HOME':
+      - web
+    'URL;WORK':
+      - web_g
+    'EMAIL;HOME':
+      - email
+    'EMAIL;INTERNET':
+    'EMAIL;WORK':
+      - email_g
+  format:
+    fax_g:
+    - phone
+    - DE
+    natel_g:
+    - phone
+    - DE
+  encoding:
+    'ADR;WORK;POSTAL': 'QUOTED-PRINTABLE'
+    'ORG': 'QUOTED-PRINTABLE'
+

@@ -1,0 +1,20 @@
+mpdf:
+  fontDir:
+    - Modules/Core/Assets/Fonts/
+  fontdata:
+    opensans:
+      R: OpenSans-Regular.ttf
+      B: OpenSans-Bold.ttf
+      I: OpenSans-Italic.ttf
+      BI: OpenSans-BoldItalic.ttf
+    opensanssemibold:
+      R: OpenSans-SemiBold.ttf
+      I: OpenSans-SemiBoldItalic.ttf
+    opensanslight:
+      R: OpenSans-Light.ttf
+      I: OpenSans-LightItalic.ttf
+    opensansextrabold:
+      R: OpenSans-ExtraBold.ttf
+      I: OpenSans-ExtraBoldItalic.ttf
+
+

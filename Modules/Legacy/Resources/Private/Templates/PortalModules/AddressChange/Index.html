@@ -1,0 +1,29 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h5 class="panel-title">
+            <a data-toggle="collapse" href="#pm_addressChange">
+                Deine Adresse hat sich geändert und du willst uns die Änderungen mitteilen?
+            </a>
+        </h5>
+    </div>
+    <div id="pm_addressChange" class="panel-collapse collapse">
+        <div class="panel-body">
+            <p>Gib hier deinen Namen ein, damit wir dich finden können...</p>
+            <form action="index.php" method="post">
+                <input type="hidden" name="portalModule[addressChange][action]" value="search" />
+                <div class="form-group">
+                    <label for="portalModule[addressChange][lastname]">Nachname</label>:
+                    <input class="form-control" type="text" name="portalModule[addressChange][lastname]" size="14"/>
+                </div>
+                <div class="form-group">
+                    <label for="portalModule[addressChange][firstname]">Vorname</label>:
+                    <input class="form-control" type="text" name="portalModule[addressChange][firstname]" size="14"/>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Daten suchen"/>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

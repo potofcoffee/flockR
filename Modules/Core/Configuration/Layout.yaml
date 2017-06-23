@@ -1,0 +1,28 @@
+css:
+  - href: //maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css
+    external: 1
+  - href: Modules/Core/Resources/Public/Styles/startmin.css
+  - href: //maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+    external: 1
+  - href: lib/datepicker/bootstrap-datepicker3.min.css
+  - href: //cdn.datatables.net/v/bs/dt-1.10.13/b-1.2.4/b-colvis-1.2.4/b-html5-1.2.4/b-print-1.2.4/cr-1.3.2/r-2.1.0/sc-1.4.2/se-1.2.0/datatables.min.css
+    external: 1
+  - href: Modules/Core/Resources/Public/Styles/FlockrFont.css
+  - href: Modules/Core/Resources/Public/Styles/Flockr.css
+js:
+  header:
+    - href: //code.jquery.com/jquery-3.1.1.min.js
+      external: 1
+    - href: //maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
+      external: 1
+    - href: lib/datepicker/bootstrap-datepicker.min.js
+    - href: lib/datepicker/bootstrap-datepicker.de.min.js
+    - href: //cdn.datatables.net/v/bs/dt-1.10.13/b-1.2.4/b-colvis-1.2.4/b-html5-1.2.4/b-print-1.2.4/cr-1.3.2/r-2.1.0/sc-1.4.2/se-1.2.0/datatables.min.js
+      external: 1
+    - href: //cdnjs.cloudflare.com/ajax/libs/ckeditor/4.6.0/ckeditor.js
+      external: 1
+    - href: //cdnjs.cloudflare.com/ajax/libs/ckeditor/4.6.0/adapters/jquery.js
+      external: 1
+    - href: Modules/Core/Resources/Public/Scripts/Flockr.js
+    - href: inc/kOOL.js
+  footer:

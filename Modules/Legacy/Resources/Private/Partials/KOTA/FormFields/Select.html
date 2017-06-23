@@ -1,0 +1,13 @@
+<div class="form-group">
+    <label for="{field.name}">{field.desc}</label>
+    <select class="form-control" name="{f:if(condition: prefix, then:'{prefix}[{field.name}]', else: '{field.name}')}" {field.params}>
+        <f:for each="{field.values}" as="value" key="key">
+            <option value="{value}" {f:if(condition:'{0: value} == {0: field.value}', then: 'selected')}>
+            <f:if condition="{field.descs.{key}}">
+                <f:then>{field.descs.{key}}</f:then>
+                <f:else>{field.descs.{value}}</f:else>
+            </f:if>
+            </option>
+        </f:for>
+    </select>
+</div>

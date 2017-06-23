@@ -1,0 +1,54 @@
+title: Standardagende
+sections:
+  - title: Eröffnung und Lobpreis
+    items:
+      - title: Eröffnungslied
+        description: Ein Lied, mit dem Gott gepriesen wird
+        by: '{Lobpreisleiter} &amp; Team'
+      - title: Begrüßung
+        description: 
+        by: '{Leiter} oder {Lobpreisleiter}'
+      - title: Lobpreis
+        description: 2-3 Lieder. Schön wäre es, wenn das 1. Lied zum Lobpreis Gottes einladen würde (z.B. "Komm, jetzt ist die Zeit…")
+        by: '{Lobpreisleiter} &amp; Team'          
+      - title: KidsGo
+        description: 'Verabschiedung, Segnung und Auszug der Kinder. \rHasen:\t{KidsGo 1 - Hasen - Vorschule}\rLöwen:\t{KidsGo 2 - Loewen - 1./2. Klasse}\rPinguine:\t{KidsGo 3 - Pinguine - 3./4. Klasse}\rHippos:\t{KidsGo 4 - Hippos - ab 5. Klasse}'
+        by: '{Leiter}'          
+        smallprint: 1
+        firstLine: 1
+  - title: Verkündigung
+    items:
+      - title: 'Sofa-Time'
+        description: Offenes Sofa
+        by: '{Leiter}'
+      - title: Predigtlied
+        description: 1 Lied passend zum Thema
+        by: '{Lobpreisleiter} &amp; Team'          
+      - title: Schriftlesung
+        description: "{sermon.reference}"
+        by: '{Schriftlesung}'
+      - title: Predigt
+        description: '{sermon.title}: {sermon.subtitle}'
+        by: '{Predigt}'          
+  - title: Anbetung und Fürbitte
+    items:
+      - title: 'Anbetungszeit'
+        description: 2-4 Lieder. Schön wäre es, wenn das 1. Lied das Thema noch einmal aufgreift. Das kann auch eine Wiederholung des Predigtlieds sein.
+        by: '{Lobpreisleiter} &amp; Team'
+      - title: Fürbitte, Segnung
+        description: '{prayers.data}'
+        by: '{Leiter}'          
+  - title: Sendung und Segen
+    items:
+      - title: Bekanntgaben
+        description: "{announcements}"
+        by: '{Leiter}'
+        smallprint: 1
+      - title: 'Schlusslied'
+        description: 1 Lied (Segenslied) oder abschließendes Lied zum Thema (+ Kollekte)
+        by: '{Lobpreisleiter} &amp; Team'          
+      - title: Segen
+        description: 
+        by: '{Leiter}'
+
+          

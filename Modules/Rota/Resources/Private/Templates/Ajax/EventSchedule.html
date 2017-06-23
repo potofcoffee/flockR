@@ -1,0 +1,9 @@
+<f:render partial="settings/DoubleSelect" arguments="{setting: peopleSelect}" />
+<hr />
+<div class="form-group">
+    <label for="textEntries">Freien Text hinzufügen</label>
+    <div class="alert alert-info alert-dismissable"><small><b>Bitte beachte:</b> Wenn du Personennamen als freien Text hinzufügst,
+        erhalten diese Personen den Dienstplan nicht automatisch per E-Mail! Besser wäre es in diesem Fall, die Person zu einer
+        der folgenden Gruppen hinzuzufügen, damit sie oben erscheint: {groups -> f:format.raw()}</small></div>
+    <textarea class="form-control" name="textEntries">{textEntries}</textarea>
+</div>

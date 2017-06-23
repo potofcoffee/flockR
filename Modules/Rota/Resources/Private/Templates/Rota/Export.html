@@ -1,0 +1,65 @@
+<f:layout name="Default"/>
+
+<f:section name="main">
+    <div class="page-header">
+        <h1>Dienstplan exportieren</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-11">
+            <p>Der Dienstplan wurde exportiert und steht hier zum Download bereit. </p>
+            <p><span class="{export.icon}"></span> {exportedFile -> fx:file.basename()}<br />
+                <small>.{exportedFile -> fx:file.extension()}, {exportedFile -> fx:file.size()}</small></p>
+
+        </div>
+        <div class="col-sm-1">
+            <a class="btn btn-primary pull-right" href="{flockr.baseUrl}{exportedFile}"><span
+                    class="fa fa-download"></span> Herunterladen</a>
+        </div>
+    </div>
+    <hr/>
+    <h2>Per E-Mail senden</h2>
+    <form action="{flockr.baseUrl}rota/rota/sendMail" method="post">
+        <input type="hidden" name="exportedFile" value="{exportedFile}"/>
+        <f:render partial="Settings/Setting" arguments="{setting: sender}"/>
+        <div class="form-group">
+            <label for="recipientOptions">Empfänger</label>
+            <select class="form-control" name="recipientOptions">
+                <option value="scheduled">Alle eingeteilten Dienstmitarbeiter</option>
+                <option value="scheduledVisible">Eingeteilte Mitarbeiter der sichtbaren Dienste</option>
+                <option value="visible">Alle Mitarbeiter der sichtbaren Dienste</option>
+                <option value="visibleLeaders">Alle Leiter der sichtbaren Dienste</option>
+                <option value="allMembers">ALLE Dienstmitarbeiter</option>
+                <option value="allLeaders">ALLE Dienstleiter</option>
+                <option value="selectedScheduled">Eingeteilte Mitarbeiter der folgenden Dienste</option>
+                <option value="selectedMembers">Mitarbeiter der folgenden Dienste</option>
+                <option value="selectedLeaders">Leiter der folgenden Dienste</option>
+                <option value="selectedPersons">Folgende Personen</option>
+            </select>
+        </div>
+        <f:render partial="Settings/Setting" arguments="{setting: teams}"/>
+        <f:render partial="Settings/Setting" arguments="{setting: people}"/>
+        <f:render partial="Settings/Setting" arguments="{setting: subject}"/>
+        <f:render partial="Settings/Setting" arguments="{setting: text}"/>
+        <div class="form-group">
+            <input type="hidden" name="attachments[]" value="{exportedFile}" />
+            <label>Dateianhänge</label>
+            <ul>
+                <li>
+                    <span class="{export.icon}"></span> {exportedFile -> fx:file.basename()}<br />
+                    <small>.{exportedFile -> fx:file.extension()}, {exportedFile -> fx:file.size()}</small>
+                </li>
+            </ul>
+        </div>
+        <hr/>
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Absenden"/>
+        </div>
+    </form>
+    <script>
+        var placeholders = {placeholders -> f:format.raw()};
+        var templates = {templates -> f:format.raw()};
+        var baseUrl = '{flockr.baseUrl}';
+    </script>
+</f:section>
+
+<f:section name="sidebar"></f:section>

@@ -1,0 +1,17 @@
+id: songs
+name: Lieder
+link:
+menu:
+  - name: Liste anzeigen
+    link: /songs/song/list
+    controller: Song
+    action: list
+  - name: CCLI Import
+    link: /songs/song/ccliImport
+    controller: Song
+    action: ccliImport
+  - name: CCLI Statistik
+    link: /songs/song/statistics
+    controller: Song
+    action: statistics
+

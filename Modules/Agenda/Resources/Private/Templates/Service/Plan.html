@@ -1,0 +1,90 @@
+<f:layout name="Default"/>
+
+<f:section name="Main">
+    <div class="page-header">
+        <h1>Gottesdienst planen</h1>
+    </div>
+
+    <f:for each="{sections}" as="section">
+    </f:for>
+
+    <ul id="agenda-plan">
+        <li data-type="section">
+            <span class="fa fa-arrows"></span>
+            Eröffnung und Lobpreis
+            <ul>
+                <li data-type="freetext" data-responsible="Christoph">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <span class="fa fa-arrows"></span>
+                            <span class="fa fa-trash delete-element-button"></span>
+                        </div>
+                        <div class="col-sm-3">Begrüßung</div>
+                        <div class="col-sm-3">Christoph</div>
+                        <div class="col-sm-5">Nette Begrüßung, Gäste nicht vergessen</div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li data-type="section">
+            <div class="row">
+                <div class="col-sm-1">
+                    <span class="fa fa-arrows"></span>
+                    <span class="fa fa-trash delete-element-button"></span>
+                </div>
+                <div class="col-sm-11">
+                    Sendung und Segen
+                </div>
+            </div>
+            <ul></ul>
+        </li>
+        <li data-type="section">
+            <div class="row">
+                <div class="col-sm-1">
+                    <span class="fa fa-arrows"></span>
+                    <span class="fa fa-trash delete-element-button"></span>
+                </div>
+                <div class="col-sm-11">
+                    Verkündigung
+                </div>
+            </div>
+            <ul></ul>
+        </li>
+    </ul>
+
+    <div id="debug" class="well"></div>
+
+    <button class="btn btn-success" id="add-element-button" data-toggle="modal" data-target="#add-element-dialog">
+        <span class="fa fa-plus"></span>
+    </button>
+
+
+    <!-- Modal -->
+    <div id="add-element-dialog" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Element hinzufügen</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="type">Typ</label>
+                        <select class="form-control" name="type" id="select-new-element-type">
+                            <option value="section">Abschnitt</option>
+                            <option value="freetext">Freitext</option>
+                        </select>
+                    </div>
+                    <div id="new-element-ajax-form"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="add-this-new-element-button" type="button" class="btn btn-success" data-dismiss="modal"><span class="fa fa-plus"></span> Hinzufügen</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</f:section>

@@ -1,0 +1,39 @@
+<f:layout name="Default"/>
+<f:section name="main">
+    <div class="page-header">
+        <h1>Jahreskalender drucken</h1>
+    </div>
+    <form action="{flockr.baseUrl}calendar/export/year" method="post" style="margin-bottom: 100px;">
+        <div class="form-group">
+            <label for="startMonth">Ab Monat</label>
+            <select class="form-control" name="startMonth">
+                <f:for each="{months}" as="month">
+                    <option value="{month.key}" {f:if(condition:
+                    '{0: month.key} == {0: currentMonth}', then: 'selected')}>{month.value}</option>
+                </f:for>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="holidayGroup">Ferienkalender</label>
+            <select class="form-control" name="holidayGroup">
+                <option></option>
+                <f:for each="{eventGroups}" as="eventGroup">
+                    <option value="{eventGroup.id}">{eventGroup.name}</option>
+                </f:for>
+            </select>
+        </div>
+        <h3>Die folgenden Gruppen im Kalender anzeigen:</h3>
+        <f:for each="{eventGroups}" as="eventGroup">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="showGroups[{eventGroup.id}]" value="1"> {eventGroup.name}
+                </label>
+            </div>
+        </f:for>
+        <hr/>
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Erstellen"/>
+        </div>
+    </form>
+</f:section>
+<f:section name="sidebar"></f:section>

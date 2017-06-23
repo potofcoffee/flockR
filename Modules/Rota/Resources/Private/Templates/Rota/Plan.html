@@ -1,0 +1,82 @@
+<f:layout name="Default"/>
+
+<f:section name="main">
+    <div class="schedule">
+        <fx:ajax id="rotaMain" route="rota/ajax/plan" arguments="" onLoad="onScheduleLoaded();"/>
+    </div>
+
+    <script>
+        var baseUrl = '{flockr.baseUrl}';
+    </script>
+
+    <div id="modal-event-schedule" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div id="modal-event-schedule-header">
+                    <h4 class="modal-title" >Modal Header<br /><small></small></h4>
+                        am Sonntag
+                    </div>
+                </div>
+                <div class="modal-body" id="modal-event-schedule-content">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="modal-event-schedule-submit" type="button" class="btn btn-primary">Speichern</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="wait-for-ajax" class="wait-for-ajax">
+        <span class="fa fa-spinner fa-spin"></span>
+    </div>
+
+</f:section>
+<f:section name="sidebar">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#panel-rota-ministries">Dienste</a>
+            </h5>
+        </div>
+        <div class="panel-collapse collapse" id="panel-rota-ministries">
+            <div class="panel-body">
+                <f:for each="{teams}" as="team">
+                    <div class="form-group">
+                        <label>{team.name -> f:format.raw()}</label>
+                        <input type="hidden" name="show-team-{team.id}" value="{f:if(condition: team.on, then: 1, else: 0}" />
+                        <div class="toggle-switch pull-right">
+                            <input id="show-team-{team.id}" name="show-team-{team.id}" class="rota-team-toggle" type="checkbox" value="1" {f:if(condition: team.on, then: 'checked')} data-team="{team.id}" />
+                            <label for="show-team-{team.id}" class="label-default"></label>
+                        </div>
+                    </div>
+                </f:for>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#panel-rota-eventgroups">Termingruppen</a>
+            </h5>
+        </div>
+        <div class="panel-collapse collapse" id="panel-rota-eventgroups">
+            <div class="panel-body">
+                <f:for each="{eventGroups}" as="eventgroup">
+                    <div class="form-group">
+                        <label>{eventgroup.name -> f:format.raw()}</label>
+                        <input type="hidden" name="show-eventgroup-{eventgroup.id}" value="{f:if(condition: eventgroup.on, then: 1, else: 0}" />
+                        <div class="toggle-switch pull-right">
+                            <input id="show-eventgroup-{eventgroup.id}" name="show-eventgroup-{eventgroup.id}" class="rota-eventgroup-toggle" type="checkbox" value="1" {f:if(condition: eventgroup.on, then: 'checked')} data-eventgroup="{eventgroup.id}" />
+                            <label for="show-eventgroup-{eventgroup.id}" class="label-default"></label>
+                        </div>
+                    </div>
+                </f:for>
+            </div>
+        </div>
+    </div>
+</f:section>

@@ -1,0 +1,41 @@
+<f:layout name="Default"/>
+<f:section name="Main">
+    <div xmlns:fx="Peregrinus\Flockr\Core\ViewHelpers">
+        <h1 class="page-header">Liederliste</h1>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover table-condensed data-table">
+                <thead>
+                <tr>
+                    <th>Aktionen</th>
+                    <th>CCLI</th>
+                    <th>Titel</th>
+                </tr>
+                </thead>
+                <tbody>
+                <f:for each="{songs}" as="song">
+                    <tr>
+                        <td>
+                            <a class="btn btn-info btn-xs" href="{FLOCKR_baseUrl}songs/song/edit/{song.file}"><span
+                                    class="glyphicon glyphicon-edit" title="Bearbeiten"></span></a>
+                            <a class="btn btn-danger btn-xs" href="{FLOCKR_baseUrl}songs/song/delete/{song.file}"><span
+                                    class="glyphicon glyphicon-trash" title="Löschen"></span></a>
+                            <a class="btn btn-info btn-xs"
+                               href="{FLOCKR_baseUrl}songs/song/ccliImportSelectSong?back=list&next=ccliImportMeta&song={song.file}&q={f:if(condition: '{song.meta.ccli}', then: '{song.meta.ccli}' else: '{song.meta.title}')}"><span
+                                    class="glyphicon glyphicon-import" title="Abgleich mit CCLI"></span> CCLI</a>
+                        </td>
+                        <td>{song.meta.ccli}</td>
+                        <td><strong>
+                            <f:if condition="{song.meta.title}">
+                                <f:then>{song.meta.title ->f:format.raw()}</f:then>
+                                <f:else>{song.file}</f:else>
+                            </f:if>
+                        </strong><br/>
+                            {song.meta.author}
+                        </td>
+                    </tr>
+                </f:for>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</f:section>

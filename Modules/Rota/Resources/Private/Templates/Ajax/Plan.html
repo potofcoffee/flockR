@@ -1,0 +1,150 @@
+<div class="page-header">
+    <h1>Dienstplan vom {title}</h1>
+</div>
+<div class="form-inline">
+    <f:if condition="{exports}">
+        <fieldset>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        id="btn-create plan" title="Plan exportieren">
+                    Plan exportieren <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <f:for each="{exports}" as="export">
+                        <li><a href="{flockr.baseUrl}rota/rota/export/{export.id}" class="btn-rota-export" data-export="{export.id}"><f:if condition="{export.icon}"><span class="{export.icon}"></span> </f:if>{export.name}</a></li>
+                    </f:for>
+                </ul>
+            </div>
+        </fieldset>
+    </f:if>
+    <fieldset>
+        <input type="hidden" name="rota_timestart" value="{timeStart}"/>
+        <select class="form-control" name="rota_timespan" id="select-timespan">
+            <f:for each="{availableTimeSpans}" as="ts" key="val">
+                <option value="{val}" {f:if(condition:
+                '{0: timeSpan} == {0: val}', then: 'selected')}>{ts}</option></f:for>
+        </select>
+    </fieldset>
+    <fieldset>
+        <button class="btn btn-default" type="button" id="btn-timestart-back" title="Zurück"><span
+                class="fa fa-angle-left"></span></button>
+        <button class="btn btn-default" type="button" id="btn-timestart-today" title="Gehe zum heutigen Datum"
+                data-date="{f:format.date(format: 'Y-m-d', date:'{f:format.date(format: \'Y-m\')}-01')}"><span
+                class="fa fa-dot-circle-o"></span>
+            <f:format.date format="%d.%m.%Y">
+                <f:format.date format="%Y-%m">-01</f:format.date>
+            </f:format.date>
+        </button>
+        <button class="btn btn-default" type="button" id="btn-timestart-forward" title="Weiter"><span
+                class="fa fa-angle-right"></span></button>
+    </fieldset>
+    <fieldset>
+        <button class="btn btn-success" type="button" id="btn-unlock-all"
+                title="Klicken, um alle angezeigten Pläne zu öffnen"><span
+                class="fa fa-unlock"></span></button>
+        <button class="btn btn-danger" type="button" id="btn-lock-all"
+                title="Klicken, um alle angezeigten Pläne zu schließen"><span
+                class="fa fa-lock"></span></button>
+    </fieldset>
+</div>
+<hr/>
+<f:if condition="{events}">
+    <f:then>
+        <f:for each="{events}" as="event">
+            <div class="schedule-event">
+                <div class="row">
+                    <div class="col-sm-1 schedule-event-date">
+                        <div class="row">
+                            <f:render partial="date/DateCircle" arguments="{date: event.startdatum}"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-11">
+                        <h2>{event.eventgruppen_name}
+                            <f:if condition="{event.title}">: {event.title}</f:if>
+                        </h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-11">
+                        <p>
+                            <f:format.date format="%H:%M Uhr">{event.startzeit}</f:format.date> &middot;
+                            {event.kommentar}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1 vertical-toolbar">
+                        <f:if condition="{event.rotastatus} == 1">
+                            <f:then>
+                                <div class="alert alert-success"><span class="fa fa-unlock"
+                                                                       title="Dieser Plan ist offen und kann verändert werden."></span>
+                                    <button class="btn btn-danger btn-lock-event-schedule" type="button"
+                                            data-event="{event.id}"
+                                            title="Plan schließen"><span class="fa fa-lock"></span></button>
+                                </div>
+                            </f:then>
+                            <f:else>
+                                <div class="alert alert-danger"><span class="fa fa-lock"
+                                                                      title="Dieser Plan ist geschlossen offen und kann nicht verändert werden."></span>
+                                    <button class="btn btn-success btn-unlock-event-schedule" type="button"
+                                            data-event="{event.id}"
+                                            title="Plan öffnen"><span class="fa fa-unlock"></span></button>
+                                </div>
+                            </f:else>
+                        </f:if>
+                        <button class="btn btn-default btn-mail-to-participants" type="button" data-event="{event.id}"
+                                title="E-Mail an alle Teilnehmer" disabled="1"><span class="fa fa-envelope"></span>
+                        </button>
+                        <button class="btn btn-default btn-participants-to-excel" type="button" data-event="{event.id}"
+                                title="Alle Teilnehmer nach Excel kopieren" disabled="1"><span
+                                class="fa fa-file-excel-o"></span></button>
+                        <button class="btn btn-default btn-participants-to-cart" type="button" data-event="{event.id}"
+                                title="Alle Teilnehmer auf meine Liste" disabled="1"><span
+                                class="fa fa-shopping-cart"></span></button>
+
+                    </div>
+                    <div class="col-sm-11">
+                        <div class="row schedule-planning-area">
+                            <f:for each="{event.teams}" as="team">
+                                <f:if condition="{team.name}">
+                                    <div class="col-sm-2 schedule-block {f:if(condition: '{event.rotastatus} == 1', then:'schedule-block-unlocked', else: 'schedule-block-locked' )} {f:if(condition: '{event.schedule.{team.id}.count} > 0', then: 'schedule-block-filled', else: 'schedule-block-empty')}"
+                                         data-event="{event.id}" data-team="{team.id}"
+                                         data-date="{event.startdatum} {event.startzeit}"
+                                         data-eventtitle="{event.eventgruppen_name}{f:if(condition: '{event.title}', then: ': {event.title}')} am {event.startdatum -> f:format.date(format: '%A, %d.%m.%Y')} um {event.startzeit -> f:format.date(format: '%H:%M Uhr')}"
+                                         title="Klicken, um diesen Dienst zu bearbeiten">
+                                        <div class="schedule-block-title">{team.name -> f:format.raw()}</div>
+                                        <f:for each="{event.schedule.{team.id}.members}" as="entry">
+                                            <f:if condition="{0: entry.type} == {0: 'person'}">
+                                                <f:then>
+                                                    <div class="schedule-entry schedulled-person">
+                                                        <span class="fa fa-user"></span> {entry.person.vorname ->
+                                                        f:format.raw()}
+                                                        {entry.person.nachname -> f:format.raw()}
+                                                    </div>
+                                                </f:then>
+                                                <f:else>
+                                                    <div class="schedule-entry schedulled-text">
+                                                        <span class="fa fa-file-text-o"></span> <i>{entry.text}</i>
+                                                    </div>
+                                                </f:else>
+                                            </f:if>
+                                        </f:for>
+                                    </div>
+                                </f:if>
+                            </f:for>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        </f:for>
+    </f:then>
+    <f:else>
+        <div class="alert alert-danger">Im gewählten Zeitraum gibt es keine planbaren Veranstaltungen.</div>
+        <div class="alert alert-info">
+            Eventuell musst du in der Seitenleiste die passenden Dienste und Termingruppen auswählen, um hier etwas
+            sehen zu können.
+        </div>
+    </f:else>
+</f:if>

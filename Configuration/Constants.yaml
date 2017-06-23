@@ -1,0 +1,40 @@
+forceSsl: true
+ldapExportAllLogins: false
+
+warrantyGiver: Volksmission Freudenstadt
+warrantyEmail: freudenstadt@volksmission.de
+warrantyUrl: https://www.volksmission-freudenstadt.de
+
+# Webfolders
+webfolders: true
+
+forceFamFirstname: false
+koolEncryptionKey: WyY1T7RgnBh6Kp1qul08
+
+allowSso: false
+
+enableFileshare: false
+
+# Only force groups for persons when adding new records (not when editing)
+leuteAdminGroupsNewOnly: true
+
+# Session lifetime (in seconds)
+sessionTimeout: 7200
+sessionTimeoutWarning: true
+sessionTimeoutAutoLogout: true
+
+# Allow group members to be exported to ezmlm mailinglists
+export2Ezmlm: false
+
+# Set to true to disable the old way of rota planning. The new one would be with groups.
+dpDisableOld: false
+
+# Set Return-Path Header for sent emails. Disable if used email server doesn't allow to set Return-Path header.
+emailSetReturnPath: true
+
+# Geocoding API key
+googleApiKey: AIzaSyBWxS1xzsHFg6CifURVEeZRs5jmLBXrNnA
+geocodeDefaultAddress: 'Wallstr. 3-5, 72250 Freudenstadt'
+geocodeDefaultLocation: 'Volksmission Freudenstadt'
+
+

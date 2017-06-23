@@ -1,0 +1,8 @@
+external:
+    sermon:
+        url: "http://www.wortzummontag.de/index.php?id=44&tx_vmfdssermons_sermons[action]=byDate&no_cache=1&tx_vmfdssermons_sermons[format]=json&tx_vmfdssermons_sermons[date]={date}"
+        firstOnly: 1
+    announcements:
+        url: http://www.volksmission-freudenstadt.de/intranet/announcement/json.php?date={date}
+    prayers:
+        sql: SELECT title AS data FROM `ko_event` WHERE `eventgruppen_id` = 24 AND `startdatum` = "{date}";

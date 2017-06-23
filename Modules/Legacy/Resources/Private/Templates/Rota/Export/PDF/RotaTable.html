@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="{FLOCKR_baseUrl}Modules/Legacy/Resources/Public/Styles/Export/pdf.css"/>
+</head>
+<body>
+<h1>{headerRow.0}</h1>
+<table class="rotaTable" border="0" cellspacing="0" width="100%">
+    <tr style="">
+        <f:for each="{headerRow}" as="cell" iteration="i">
+            <th valign="top" width="{colWidth}" style="max-width: {colWidth}; width: {colWidth};">
+                <f:if condition="{i.index}">{cell -> f:format.date(format: '%A, %d.%m.%Y')}<br />
+                    <small><fx:churchYear date="{cell -> f:format.date(format: '%Y-%m-%d')}" /></small><br />
+                </f:if>
+            </th>
+        </f:for>
+    </tr>
+    <f:for each="{commentRows}" as="row" iteration="y">
+        <tr class="comment">
+            <f:for each="{row}" as="cell" iteration="x">
+                <f:if condition="{x.index}">
+                    <f:then>
+                        <td valign="top">{cell -> f:format.nl2br()}</td>
+                    </f:then>
+                    <f:else>
+                        <th valign="top">{cell -> f:format.nl2br()}</th>
+                    </f:else>
+                </f:if>
+
+            </f:for>
+        </tr>
+    </f:for>
+    <f:for each="{dataRows}" as="row" iteration="y">
+        <tr>
+            <f:for each="{row}" as="cell" iteration="x">
+                <f:if condition="{x.index}">
+                    <f:then>
+                        <td valign="top">{cell -> f:format.nl2br()}</td>
+                    </f:then>
+                    <f:else>
+                        <th valign="top">{cell -> f:format.nl2br() ->f:format.splitLines(separator: ' - ')}</th>
+                    </f:else>
+                </f:if>
+
+            </f:for>
+        </tr>
+    </f:for>
+</table>
+<table class="footerTable" width="100%">
+    <tr>
+        <td>
+            Erstellt mit flockR {flockr.version}<br />
+            Copyright (c) {f:format.date(format: 'Y')} Volksmission Freudenstadt, Christoph Fischer. FlockR is free software licensed under GPL 3.0+.
+        </td>
+        <td class="right">
+            Erstellt am {f:format.date(format: '%A, %d.%m.%Y um %H:%m Uhr')} von {creator}<br />
+            Aktuelle Version online unter: <a href="{FLOCKR_baseUrl}rota/?action=schedule">{FLOCKR_baseUrl}rota/?action=schedule</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

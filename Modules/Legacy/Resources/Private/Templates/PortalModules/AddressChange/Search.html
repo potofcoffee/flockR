@@ -1,0 +1,24 @@
+<div class="page-header">
+    <h1>Bist du das?</h1>
+</div>
+<p>Zu dem von dir angegebenen Namen haben wir folgende Personeneinträge gefunden. Bitte wähle aus, welcher zu dir gehört:</p>
+<table class="table">
+    <tbody>
+    <f:for each="{people}" as="person">
+    <tr>
+        <td>
+            <form method="post" action="index.php">
+                <input type="hidden" key="portalModule[addressChange][action]" value="search" />
+                <input type="hidden" key="portalModule[addressChange][id]" value="{person.id}" />
+                <input type="hidden" key="portalModule[addressChange][firstName]" value="{person.vorname}" />
+                <input type="hidden" key="portalModule[addressChange][lastName]" value="{person.lastname}" />
+                <input class="btn btn-primary" type="submit" value="Das bin ich"/>
+            </form>
+        </td>
+        <td>
+        <b>{person.vorname} {person.nachname}</b> aus {person.ort}, geb. am. {person.geburtsdatum -> f:format.date(format: '%d.%m.')}
+        </td>
+    </tr>
+    </f:for>
+    </tbody>
+</table>

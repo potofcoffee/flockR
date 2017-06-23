@@ -1,0 +1,105 @@
+<div id="wrapper">
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"><span class="icon-flockr"></span> flockR</a>
+            </div>
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <ul class="nav navbar-nav navbar-left navbar-collapse">
+                <f:for each="{menu}" as="subMenu">
+                    <f:if condition="{subMenu.menu}">
+                        <f:then>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">{subMenu.name} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <f:for each="{subMenu.menu}" as="item">
+                                        <f:if condition="{item.link}">
+                                            <f:then>
+                                                <li><a href="{flockr.baseUrl}{item.link}">{item.name -> f:format.raw()}</a></li>
+                                            </f:then>
+                                            <f:else>
+                                                <li class="dropdown-header">{item.name -> f:format.raw()}</li>
+                                            </f:else>
+                                        </f:if>
+                                    </f:for>
+                                </ul>
+                            </li>
+                        </f:then>
+                        <f:else>
+                            <li><a href="{flockr.baseUrl}{subMenu.link}" {subMenu.linkParam}>{subMenu.name -> f:format.raw()}</a>
+                            </li>
+                        </f:else>
+                    </f:if>
+                </f:for>
+            </ul>
+            <ul class="nav navbar-right navbar-top-links">
+                <f:if condition="{isLoggedIn}">
+                    <f:then>
+                        <f:for each="{rightMenu}" as="subMenu">
+                            <li>
+                                <a href="{flockr.baseUrl}{subMenu.link}" {subMenu.linkParam}>{subMenu.name -> f:format.raw()}</a>
+                            </li>
+                        </f:for>
+                        <li class="dropdown pull-right">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                               role="button" aria-haspopup="true"
+                               aria-expanded="false"><i class="fa fa-user fa-fw"></i> {logout.user.login}<span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <f:for each="{userMenu}" as="subMenu">
+                                    <li>
+                                        <a href="{flockr.baseUrl}{subMenu.link}" {subMenu.linkParam}>{subMenu.name -> f:format.raw()}</a>
+                                    </li>
+                                </f:for>
+                                <li>
+                                    <a href="{logout.link}"><i class="fa fa-sign-out fa-fw"></i> {logout.text}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </f:then>
+                    <f:else>
+                        <li class="dropdown pull-right">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                               role="button" aria-haspopup="true"
+                               aria-expanded="false"><i class="fa fa-user fa-fw"></i> {login.text.login}<span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu" id="login-dp">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form method="post" action="{flockr.baseUrl}index.php">
+                                                <div style="white-space:nowrap;">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail2">{login.text.username}</label>
+                                                        <input type="text" name="username" class="form-control"
+                                                               id="exampleInputEmail2"
+                                                               placeholder="{login.text.username}" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword2">{login.text.password}</label>
+                                                        <input type="password" name="password" class="form-control"
+                                                               id="exampleInputPassword2"
+                                                               placeholder="{login.text.password}" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="submit" value="{login.text.login}"
+                                                               name="Login" class="btn btn-primary btn-block"/>
+                                                    </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </f:else>
+                </f:if>
+            </ul>
+

@@ -1,0 +1,21 @@
+<f:layout name="Default"/>
+
+<f:section name="Main">
+    <div class="page-header">
+        <h1>Von CCLI importieren</h1>
+    </div>
+    <p>Hier kannst du deine Suchbegriffe eingeben, um ein Lied bei CCLI zu finden und zu importieren.</p>
+    <form method="POST" action="/songs/song/ccliImportSelectSong">
+        <input type="hidden" name="back" value="list" />
+        <input type="hidden" name="next" value="ccliImportDoImport" />
+        <div class="form-group">
+            <label for="q">
+                Suche nach
+            </label>
+            <input class="form-control" type="text" name="q" value="" placeholder="Deine Suchanfrage"/>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Suchen"/>
+        </div>
+    </form>
+</f:section>

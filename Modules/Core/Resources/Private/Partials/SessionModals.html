@@ -1,0 +1,50 @@
+<div id="sessionTimeoutWarning" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Session läuft bald ab!</h4>
+            </div>
+            <div class="modal-body">
+                <p>Aufgrund zu langer Inaktivität wirst du in <span class="sessionTimeoutCounter"></span> automatisch abgemeldet. Klicke auf "Angemeldet bleiben" um nicht abgemeldet zu werden.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSessionTimeoutReset" type="button" class="btn btn-primary">Angemeldet bleiben</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div id="sessionTimeoutLoggedOut" class="modal fade" tabindex="-1" role="dialog">
+    <form id="sessionTimedOutReLoginForm" method="post" action="{FLOCKR_baseUrl}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Session abgelaufen</h4>
+            </div>
+            <div class="modal-body">
+                <p>Aufgrund zu langer Inaktivität wurdest du automatisch abgemeldet. Hier kannst du dich direkt neu anmelden:</p>
+                    <div style="white-space:nowrap;">
+                        <div class="form-group">
+                            <label for="username">Benutzer</label>
+                            <input type="text" name="username" class="form-control"
+                                   id="username"
+                                   placeholder="Dein Benutzername" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Passwort</label>
+                            <input type="password" name="password" class="form-control"
+                                   id="password"
+                                   placeholder="Dein Password" required>
+                        </div>
+                        <div class="form-group">
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Anmelden" name="Login" class="btn btn-primary"/>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    </form>
+</div><!-- /.modal -->

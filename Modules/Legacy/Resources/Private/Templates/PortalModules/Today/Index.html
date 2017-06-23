@@ -1,0 +1,62 @@
+<div class="portal-module" xmlns:fx="Peregrinus\Flockr\Core\ViewHelpers">
+    <div class="row">
+        <div class="col-sm-6">
+            <f:if condition="{events}">
+                <h2>Aktuelle Termine</h2>
+                <table class="table">
+                    <tbody>
+                    <f:for each="{events}" as="event">
+                        <tr>
+                            <td>
+                                <!-- {$h.wochentag}, {$h.startdatum|truncate:6:""}{if $h.enddatum != ""} - {$h.enddatum|truncate:6:""}{/if}-->
+                                {event.startdatum -> fx:format.date(format: '%A, %d.%m.')}
+                                <f:if condition="{event.enddatum}"> - {event.enddatum -> fx:format.date(format: '%d.%m.')}</f:if><br />
+                                <f:if condition="{event.allDay}">
+                                    <f:then>
+                                        ganztägig
+                                    </f:then>
+                                    <f:else>
+                                        {event.startzeit -> fx:format.date(format: '%H:%M')}
+                                        <f:if condition="{event.endzeit}"> - {event.endzeit -> fx:format.date(format: '%H:%M')}</f:if> Uhr
+                                    </f:else>
+                                </f:if>
+                            </td>
+                            <td>
+                                {event.eventgruppen_name}<br/>
+                                <f:if condition="{event.title}"><b>{event.title}</b></f:if>
+                            </td>
+                        </tr>
+                    </f:for>
+                </table>
+            </f:if>
+        </div>
+        <div class="col-sm-6">
+            <h2>Deine Reservierungen</h2>
+            <table class="table">
+                <tbody>
+                <f:for each="{reservations}" as="event">
+                    <tr>
+                        <td>
+                            <!-- {$h.wochentag}, {$h.startdatum|truncate:6:""}{if $h.enddatum != ""} - {$h.enddatum|truncate:6:""}{/if}-->
+                            {event.startdatum -> fx:format.date(format: '%A, %d.%m.')}
+                            <f:if condition="{event.enddatum}"> - {event.enddatum -> fx:format.date(format: '%d.%m.')}</f:if><br />
+                            <f:if condition="{event.allDay}">
+                                <f:then>
+                                    ganztägig
+                                </f:then>
+                                <f:else>
+                                    {event.startzeit -> fx:format.date(format: '%H:%M')}
+                                    <f:if condition="{event.endzeit}"> - {event.endzeit -> fx:format.date(format: '%H:%M')}</f:if> Uhr
+                                </f:else>
+                            </f:if>
+                        </td>
+                        <td>
+                            <b>{event.item}</b><br/>
+                            <f:if condition="{event.purpose}">{event.purpose}</f:if>
+                        </td>
+                    </tr>
+                </f:for>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+Peregrinus\Flockr\Events\Domain\Calendar:
+  type: entity
+  table: ko_event_calendar
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    title:
+      type: string
+      column: name
+    type:
+      type: integer

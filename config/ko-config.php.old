@@ -1,0 +1,210 @@
+<?php
+/***************************************************************
+*  Copyright notice
+*
+*  (c) 2003-2010 Renzo Lauper (renzo@churchtool.org)
+*  All rights reserved
+*
+*  This script is part of the kOOL project. The kOOL project is
+*  free software; you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+*  The GNU General Public License can be found at
+*  http://www.gnu.org/copyleft/gpl.html.
+*  A copy is found in the textfile GPL.txt and important notices to the license
+*  from the author is found in LICENSE.txt distributed with these scripts.
+*
+*  kOOL is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  This copyright notice MUST APPEAR in all copies of the script!
+***************************************************************/
+
+define('FORCE_SSL', true);
+
+//Titel
+$HTML_TITLE = 'Intranet der Volksmission Freudenstadt';
+
+//Module
+$MODULES = array('daten', 'reservation', 'leute', 'kg', 'groups', 'rota',
+                 'admin', 'tools','sms','mailing','gottesdienste');
+
+//Languages
+$WEB_LANGS = array('de_DE');
+setlocale (LC_ALL, 'de_DE.utf8');
+//$WEB_LANGS2['de'] = array('DE');
+$GET_LANG_FROM_BROWSER = FALSE;
+
+//Datenbank
+$mysql_user = 'vmfredbb';
+$mysql_pass = 'fdsvmec';
+$mysql_server = 'localhost';
+$mysql_db = 'usrdb_vmfredbb_kool';
+
+//LDAP
+define('LDAP_EXPORT_ALL_LOGINS', FALSE);
+$ldap_enabled = FALSE;
+$ldap_admin = 'kOOL_ldapadmin';
+$ldap_admin_pw = 'fdsvmec';
+$ldap_server = 'ldap.vm-freudenstadt.de';
+$ldap_dn = 'ou=freudenstadt,dc=volksmission,dc=de';
+
+// toph: add mozillaAbPersonAlpha schema
+$LDAP_SCHEMA[4] = 'mozillaAbPersonAlpha';
+
+// toph: remap street address to another ldap attribute (Thunderbird doesn't recognize postalAddress)
+$LDAP_ATTRIB['adresse'] = array('postalAddress', 'street','mozillaHomeStreet');
+$LDAP_ATTRIB['adresse_zusatz'] = array('postalAddress', 'mozillaHomeStreet2');
+$LDAP_ATTRIB['plz'] = array('postalCode', 'mozillaHomePostalCode');
+$LDAP_ATTRIB['ort'] = array('l', 'mozillaHomeLocalityName');
+$LDAP_ATTRIB['web'] = 'mozillaWorkUrl';
+
+
+//$LDAP_ATTRIB['adresse'] = array('postalAddress', 'street');
+//$LDAP_ATTRIB['adresse_zusatz'] = array('postalAddress');
+//$LDAP_ATTRIB['plz'] = array('postalCode');
+//$LDAP_ATTRIB['ort'] = array('l');
+//unset($LDAP_ATTRIB['web']);
+
+
+
+//Base
+$BASE_URL = 'https://flockr.vmfds.de/';
+$BASE_PATH = '/home/vmfredbb/flockr/';
+
+//Smarty
+$smarty_dir = $BASE_PATH;
+
+//Include path for smarty (if installed locally)
+$INCLUDE_PATH_SMARTY = '/home/vmfredbb/flockr/smarty/libs';
+
+//SMS-Parameter
+$SMS_PARAMETER = array('user' => 'volksmissionfds', 'pass' => '60LjsztkRFd4Y4kFXMyE', 'api_id' => '3246551', 'sender_id' => array('491781766429'));
+
+//Fast-Filter (Filter-ID)
+$FAST_FILTER_IDS = array(101);
+
+//Plugins
+$PLUGINS = array(
+	array("name" => "map_search_ch", "type" => "leute"),
+	array("name" => "map24", "type" => "leute"),
+	array("name" => "maps_google", "type" => "leute"),
+	array("name" => "vmfds_ingresboard", "type" => "groups"),
+	array("name" => "address_map", "type" => "leute"),
+	array("name" => "vmfds_agende", "type" => "rota"),
+	array("name" => "vmfds_progmatic2014", "type" => "reservation"),
+	array("name" => "vmfds_events", "type" => "daten"),
+);
+
+//Warranty
+define('WARRANTY_GIVER', 'Volksmission Freudenstadt');
+define('WARRANTY_EMAIL', 'freudenstadt@volksmission.de');
+define('WARRANTY_URL', 'https://www.volksmission-freudenstadt.de/');
+
+//Webfolders
+define('WEBFOLDERS', TRUE);
+$WEBFOLDERS_BASE = $BASE_PATH.'webfolders/';
+$WEBFOLDERS_BASE_HTACCESS = $BASE_PATH.'.webfolders/';
+
+//Family sort order
+$FAMFUNCTION_SORT_ORDER = array('husband' => 1, 'wife' => 2, 'child' => 3);
+
+//Set to TRUE if family first name must be in every export. Otherwise it will only be 'Fam Lastname'.
+define('FORCE_FAM_FIRSTNAME', FALSE);
+
+//Encryption key for get.php (as set in TYPO3 extension manager for kool_base)
+define('KOOL_ENCRYPTION_KEY', 'WyY1T7RgnBh6Kp1qul08');
+
+//Allow SingleSignon through TYPO3 extension (kool_sso)
+define('ALLOW_SSO', FALSE);
+
+//Disable old fileshare
+define('ENABLE_FILESHARE', FALSE);
+
+//Set additional email fields from DB.ko_leute ('email' is set by default)
+//$LEUTE_EMAIL_FIELDS[] = '';
+
+//Only force groups for persons when adding new records (not when editing)
+define('LEUTE_ADMIN_GROUPS_NEW_ONLY', FALSE);
+
+//Add these columns to the address list export for children
+//$LEUTE_EXPORT_CHILDREN_COLUMNS = array('_father', '_mother', '_natel', '_father_natel');
+
+//Session lifetime (in seconds)
+define('SESSION_TIMEOUT', 7200);
+define('SESSION_TIMEOUT_WARNING', TRUE);
+define('SESSION_TIMEOUT_AUTO_LOGOUT', TRUE);
+
+// toph: warranty provider:
+define('WARRANTY_EMAIL', 'chris@toph.de');
+
+//Allow group members to be exported to ezmlm mailinglists
+define('EXPORT2EZMLM', FALSE);
+
+//Set to true to disable the old way of rota planning. The new one would be with groups.
+define('DP_DISABLE_OLD', FALSE);
+
+//Settings for mailing module
+$MAILING_PARAMETER = array('host' => 'pop.gmail.com', 'port' => 995, 'user' => 'koolmail@intranet.vm-freudenstadt.de', 'domain' => 'intranet.vm-freudenstadt.de', 'pass' => 'oberkool', 'ssl' => true, 'folder' => 'INBOX', 'return_path' => 'volksmission-freudenstadt.de');
+//$MAIL_TRANSPORT = array('method' => 'mail');
+$MAIL_TRANSPORT = array('host' => 'localhost', 'port' => 25);
+
+
+
+//Set Return-Path Header for sent emails. Disable if used email server doesn't allow to set Return-Path header.
+define('EMAIL_SET_RETURN_PATH', TRUE);
+
+//toph: pdflatex_path
+$PDFLATEX_PATH = '/home/vmfredbb/usr/local/texlive2011/bin/i386-linux/';
+
+// vmfds: leute
+$LEUTE_EMAIL_FIELDS = array('email', 'email_g');
+$LEUTE_MOBILE_FIELDS = array('natel', 'natel_g');
+$COLS_LEUTE_LATEX_FROM[] = 'telg';
+$COLS_LEUTE_LATEX_FROM[] = 'email_g';
+
+// vmfds: ical feeds
+date_default_timezone_set('Europe/Berlin');
+define('ICAL_HOME_TIMEZONE', TRUE);
+
+
+
+// vCard overrides for CardDAV, e.g. in ko_config:
+
+// remove 'Anrede' from full name:
+$vCardProperties['fields']['FN'] = array('_' => array('sep' => ' '), 'vorname', 'nachname');
+
+// work address, etc.
+$vCardProperties['fields']['ADR;WORK;POSTAL'] = array(null, null, 'adresse_g', 'ort_g', null, 'plz_g', 'land_g');
+$vCardProperties['fields']['TEL;HOME;FAX'] = $vCardProperties['fields']['TEL;WORK;FAX'];
+$vCardProperties['fields']['TEL;WORK;FAX'] = array('fax_g');
+$vCardProperties['fields']['URL;HOME'] = $vCardProperties['fields']['URL;WORK'];
+$vCardProperties['fields']['URL;WORK'] = array('web_g');
+$vCardProperties['fields']['EMAIL;HOME'] = $vCardProperties['fields']['EMAIL;INTERNET'];
+unset($vCardProperties['fields']['EMAIL;INTERNET']);
+$vCardProperties['fields']['EMAIL;WORK'] = array('email_g');
+
+$vCardProperties['format']['fax_g'] = array('phone', 'DE');
+$vCardProperties['format']['natel_g'] = array('phone', 'DE');
+$vCardProperties['encoding']['ADR;WORK;POSTAL'] = 'QUOTED-PRINTABLE';
+
+// O => ORG;
+$vCardProperties['fields']['ORG'] = $vCardProperties['fields']['O'];
+$vCardProperties['encoding']['ORG'] = 'QUOTED-PRINTABLE';
+
+define('LEUTE_ADMIN_GROUPS_NEW_ONLY', TRUE);
+
+
+// Geocoding API key
+define('GOOGLE_API_KEY', 'AIzaSyBWxS1xzsHFg6CifURVEeZRs5jmLBXrNnA');
+define('GEOCODE_DEFAULT_ADDRESS', 'Wallstr. 3-5, 72250 Freudenstadt');
+define('GEOCODE_DEFAULT_LOCATION', 'Volksmission Freudenstadt');
+
+
+//Leute-Formular Layout einlesen
+include($ko_path.'config/leute_formular.inc');
+

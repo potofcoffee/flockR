@@ -1,0 +1,19 @@
+access:
+  Songs:
+    Song:
+      list:
+        level: 1
+      edit:
+        level: 2
+      ccliImport:
+        level: 2
+      ccliImportMeta:
+        level: 2
+      ccliImportData:
+        level: 2
+      ccliImportSelectSong:
+        level: 2
+      ccliImportDoImport:
+        level: 2
+      statistics:
+        level: 3

@@ -1,0 +1,103 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#"><span class="icon-flockr"></span> flockR</a>
+    </div>
+
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+
+    <ul class="nav navbar-nav navbar-left navbar-collapse">
+        <li>
+            <a href="/">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+        </li>
+        <f:for each="{layout.menu.items}" as="menu">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false">
+                    {menu.name} <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <f:for each="{menu.menu}" as="submenu">
+                        <li>
+                            <a href="{submenu.link}">
+                                {submenu.name}
+                            </a>
+                        </li>
+                    </f:for>
+                </ul>
+            </li>
+        </f:for>
+    </ul>
+    <ul class="nav navbar-right navbar-top-links">
+        <f:if condition="{layout.security.isLoggedIn}">
+            <f:then>
+                <li class="dropdown pull-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       role="button" aria-haspopup="true"
+                       aria-expanded="false"><i class="fa fa-user fa-fw"></i>
+                        {layout.security.user.login}<span
+                                class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{FLOCKR_baseUrl}?action=logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </f:then>
+            <f:else>
+                <li class="dropdown pull-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       role="button" aria-haspopup="true"
+                       aria-expanded="false">Login<span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu" id="login-dp">
+                        <li>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form method="post" action="{FLOCKR_baseUrl}">
+                                        <div style="white-space:nowrap;">
+                                            <div class="form-group">
+                                                <label for="username">Benutzer</label>
+                                                <input type="text" name="username" class="form-control"
+                                                       id="username"
+                                                       placeholder="Dein Benutzername" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">Passwort</label>
+                                                <input type="password" name="password" class="form-control"
+                                                       id="password"
+                                                       placeholder="Dein Password" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" value="Anmelden" name="Login" class="btn btn-primary btn-block"/>
+                                            </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+            </f:else>
+        </f:if>
+    </ul>
+
+
+    <!-- Sidebar -->
+    <div class="navbar-default sidebar navbar-collapse" role="navigation">
+        <div class="panel-group" id="accordion">
+            <f:render partial="Panels/Submenu" arguments="{_all}"/>
+        </div>
+        <f:for each="{panels}" as="panel">
+            <f:render partial="Panels/Panel" arguments="{panel: panel}"/>
+        </f:for>
+    </div>
+
+
+</nav>

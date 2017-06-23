@@ -1,0 +1,13 @@
+id: agenda
+name: Gottesdienste
+link:
+menu:
+  - name: Liste anzeigen
+    link: agenda/service/list
+    controller: Service
+    action: list
+  - name: Neuer Gottesdienst
+    link: agenda/service/new
+    controller: Service
+    action: new
+

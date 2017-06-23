@@ -1,0 +1,17 @@
+Peregrinus\Flockr\Core\Domain\UserPermission:
+  type: entity
+  table: flockr_user_rights
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    user:
+      type: integer
+    module:
+      type: string
+    object:
+      type: string
+    level:
+      type: integer

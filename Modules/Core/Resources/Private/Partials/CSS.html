@@ -1,0 +1,4 @@
+<f:for each="{css}" as="file">
+    <link rel="stylesheet" type="text/css"
+          href="{f:if(condition: '{file.external}', else: '{baseUrl}')}{file.href}{f:if(condition: '{file.noCache}', then: '?{fx:format.date(format: \'U\')}')}"/>
+</f:for>

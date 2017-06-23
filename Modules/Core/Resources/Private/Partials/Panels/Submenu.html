@@ -1,0 +1,19 @@
+<f:for each="{layout.menu.items}" as="menu" key="menuModule">
+    <f:if condition="{0: menuModule} == {0: module}">
+        <div id="sm_{module}" class="panel panel-default">
+            <div class="panel-heading">
+                <h4>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#sm_{module}_collapse">{menu.name}</a></h4>
+            </div>
+        </div>
+        <div id="sm_{module}_collapse" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <ul>
+                    <f:for each="{menu.menu}" as="item">
+                        <li><a href="{item.link}">{item.name}</a></li>
+                    </f:for>
+                </ul>
+            </div>
+        </div>
+    </f:if>
+</f:for>

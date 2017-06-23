@@ -1,0 +1,47 @@
+Peregrinus\Flockr\Core\Domain\UserGroup:
+  type: entity
+  table: ko_admingroups
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    title:
+      type: string
+      column: name
+    modules:
+      type: string
+    accessLevelForModuleLeute:
+      type: string
+      column: leute_admin
+    accessLevelForModuleDaten:
+      type: string
+      column: event_admin
+    accessLevelForModuleReservation:
+      type: string
+      column: res_admin
+    accessLevelForModuleRota:
+      type: string
+      column: rota_admin
+    accessLevelForModuleFileshare:
+      type: string
+      column: fileshare_admin
+    accessLevelForModuleKg:
+      type: string
+      column: kg_admin
+    accessLevelForModuleTapes:
+      type: string
+      column: tapes_admin
+    accessLevelForModuleGroups:
+      type: string
+      column: groups_admin
+    accessLevelForModuleDonations:
+      type: string
+      column: donations_admin
+    accessLevelForModuleTracking:
+      type: string
+      column: tracking_admin
+    peopleFilter:
+      type: string
+      column: leute_admin_filter

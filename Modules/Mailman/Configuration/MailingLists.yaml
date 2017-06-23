@@ -1,0 +1,10 @@
+# path to the mailman binaries (list_members, ...)
+mailmanPath: /usr/sbin
+lists:
+# Configure each mailing list with
+# <list name>: <group id in flockR>
+# <group id> can be an integer or the full, 6-character, zero-padded string
+  test: 55
+  wortzummontag: 125
+  newsletter: 124
+

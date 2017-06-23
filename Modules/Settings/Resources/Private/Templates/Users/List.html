@@ -1,0 +1,36 @@
+<f:layout name="Default"/>
+<f:section name="Main">
+    <div xmlns:fx="Peregrinus\Flockr\Core\ViewHelpers">
+        <h1 class="page-header">Benutzerkonten</h1>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover table-condensed data-table">
+                <thead>
+                <tr>
+                    <th>Aktionen</th>
+                    <th>Benutzername</th>
+                </tr>
+                </thead>
+                <tbody>
+                <f:for each="{users}" as="user">
+                    <tr>
+                        <td>
+                            <f:if condition="{fx:security.permission(module: 'Settings')} >= 4">
+                                <a class="btn btn-info btn-xs"
+                                   href="{FLOCKR_baseUrl}settings/users/edit/{user.id}"><span
+                                        class="glyphicon glyphicon-edit" title="Bearbeiten"></span></a>
+                                <a class="btn btn-info btn-xs"
+                                   href="{FLOCKR_baseUrl}settings/users/rights/{user.id}"><span
+                                        class="fa fa-key" title="Benutzerrechte"></span></a>
+                                <a class="btn btn-danger btn-xs"
+                                   href="{FLOCKR_baseUrl}settings/user/delete/{user.id}"><span
+                                        class="glyphicon glyphicon-trash" title="Löschen"></span></a>
+                            </f:if>
+                        </td>
+                        <td>{user.login}</td>
+                    </tr>
+                </f:for>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</f:section>

@@ -1,0 +1,12 @@
+development:
+  driver: pdo_mysql
+  host: localhost
+  user: vmfredbb
+  password: fdsvmec
+  dbname: usrdb_vmfredbb_kool
+production:
+  driver: pdo_mysql
+  host: localhost
+  user: vmfredbb
+  password: fdsvmec
+  dbname: usrdb_vmfredbb_kool
