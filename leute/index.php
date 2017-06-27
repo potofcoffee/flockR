@@ -2218,7 +2218,6 @@ switch ($do_action) {
                         }
                     }
 
-
                     if ($_POST['id'] == 'excel') {
                         $filename = $ko_path . "download/excel/" . getLL("export_filename") . strftime("%d%m%Y_%H%M%S",
                                 time()) . ".xlsx";
@@ -2244,7 +2243,7 @@ switch ($do_action) {
                     }
                     $_SESSION['show'] = $show;
 
-                    $onload_code = "ko_popup('" . $ko_path . "download.php?action=file&amp;file=" . substr($filename,
+                    $onload_code = "ko_popup('" . FLOCKR_baseUrl . "download.php?action=file&file=" . substr($filename,
                             3) . "');";
                     break;
 
