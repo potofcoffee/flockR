@@ -40,27 +40,31 @@ function human_filesize($bytes, $decimals = 2) {
 switch($_GET["action"]) {
 	case "file":
 		//Nur Dateien aus dem Download-Verzeichnis des Webverzeichnises erlauben
-		$full_path = realpath($_GET["file"]);
+		$relativePath = str_replace(FLOCKR_basePath, '', $_GET["file"]);
+		$absolutePath = FLOCKR_basePath.$relativePath;
+		$absoluteUrl = FLOCKR_baseUrl.$relativePath;
 		//Find empty file
-		if($full_path == '') ko_die('No file found');
+		if($relativePath == '') ko_die('No file found');
 		//Replace \ with / for windows systems otherwise the check below will always trigger an error
-		if(DIRECTORY_SEPARATOR == '\\') $full_path = str_replace('\\', '/', $full_path);
-		if(substr($full_path, 0, strlen($BASE_PATH."download")) != ($BASE_PATH."download")) {
-			trigger_error('Not allowed download file: '.$_GET['file'], E_USER_ERROR);
+		if(DIRECTORY_SEPARATOR == '\\') $relativePath = str_replace('\\', '/', $relativePath);
+		if(substr($relativePath, 0, 8) != ('download')) {
+			trigger_error('Not allowed download file: '.$relativePath, E_USER_ERROR);
+			\Peregrinus\Flockr\Core\Debugger::flag('not in download');
 			exit;
 		}
-		if(!file_exists($_GET["file"])) {
+		if(!file_exists(FLOCKR_basePath.$relativePath)) {
+            \Peregrinus\Flockr\Core\Debugger::flag('no such file: '.FLOCKR_basePath.$relativePath);
 			exit;
 		}
-		if(substr($_GET["file"], 0, 1) == "/") {
+		if(substr($relativePath, 0, 1) == "/") {
+            \Peregrinus\Flockr\Core\Debugger::flag('leading /');
 			exit;
 		}
 
-		$fileName = basename($_GET["file"]);
-		$fileFullPath = $BASE_URL.$_GET["file"];
-		$fileSize = filesize($_GET['file']);
+		$fileName = basename($relativePath);
+		$fileSize = filesize($absolutePath);
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        $fileMimeType = finfo_file($finfo, $GET['file']);
+        $fileMimeType = finfo_file($finfo, $absolutePath);
         finfo_close($finfo);
 
 	break;  //case "file"
@@ -81,7 +85,7 @@ switch($_GET["action"]) {
 </div>
 <div class="modal-body">
     <p>Die gew&uuml;nschte Datei steht hier f&uuml;r dich bereit:</p>
-    <a class="btn btn-primary" href="<?php echo $fileFullPath; ?>" target="_blank"><span class="fa fa-download"></span> Herunterladen</a>
+    <a class="btn btn-primary" href="<?php echo $absoluteUrl; ?>" target="_blank"><span class="fa fa-download"></span> Herunterladen</a>
     <a class="btn btn-default" href="?action=show_filesend&file=<?php echo $_GET['file']; ?>&filetype=<?php echo $_GET['filetype']; ?>"><span class="fa fa-envelope"></span> Per E-Mail versenden</a>
 </div>
 <div class="modal-footer">
