@@ -68,9 +68,9 @@ function ko_export_to_xlsx(
     $name = $person['vorname'] . ' ' . $person['nachname'];
 
     $objPHPExcel = new PHPExcel();
-    $objPHPExcel->getProperties()->setCreator(utf8_encode($name));
-    $objPHPExcel->getProperties()->setLastModifiedBy(utf8_encode($name));
-    $objPHPExcel->getProperties()->setTitle(utf8_encode($title));
+    $objPHPExcel->getProperties()->setCreator($name);
+    $objPHPExcel->getProperties()->setLastModifiedBy($name);
+    $objPHPExcel->getProperties()->setTitle($title);
     $objPHPExcel->getProperties()->setSubject('kOOL-Export');
     $objPHPExcel->getProperties()->setDescription('');
 
@@ -135,7 +135,7 @@ function ko_export_to_xlsx(
         'font' => array(
             'bold' => ko_get_setting('xls_title_bold') ? true : false,
             'color' => array('argb' => $colorName),
-            'name' => utf8_encode(ko_get_setting('xls_title_font'))
+            'name' => ko_get_setting('xls_title_font')
         ),
     );
 
@@ -143,14 +143,14 @@ function ko_export_to_xlsx(
         'font' => array(
             'bold' => ko_get_setting('xls_title_bold') ? true : false,
             'size' => 12,
-            'name' => utf8_encode(ko_get_setting('xls_title_font'))
+            'name' => ko_get_setting('xls_title_font')
         )
     );
 
     $xlsSubtitleFormat = array(
         'font' => array(
             'bold' => ko_get_setting('xls_title_bold') ? true : false,
-            'name' => utf8_encode(ko_get_setting('xls_title_font'))
+            'name' => ko_get_setting('xls_title_font')
         )
     );
 
@@ -163,7 +163,7 @@ function ko_export_to_xlsx(
             //Add title
             if ($header['title']) {
                 $sheet->getStyleByColumnAndRow(0, $row)->applyFromArray($xlsTitleFormat);
-                $sheet->setCellValueByColumnAndRow(0, $row++, utf8_encode($header['title']));
+                $sheet->setCellValueByColumnAndRow(0, $row++, $header['title']);
             }
             //Add subtitle
             if (is_array($header['subtitle']) && sizeof($header['subtitle']) > 0) {
@@ -172,13 +172,13 @@ function ko_export_to_xlsx(
                         $k .= ':';
                     }
                     $sheet->getStyleByColumnAndRow(0, $row)->applyFromArray($xlsSubtitleFormat);
-                    $sheet->setCellValueByColumnAndRow(0, $row, utf8_encode($k));
-                    $sheet->setCellValueByColumnAndRow(1, $row++, utf8_encode($v));
+                    $sheet->setCellValueByColumnAndRow(0, $row, $k);
+                    $sheet->setCellValueByColumnAndRow(1, $row++, $v);
                 }
             } else {
                 if ($header['subtitle']) {
                     $sheet->getStyleByColumnAndRow(0, $row)->applyFromArray($xlsHeaderFormat);
-                    $sheet->setCellValueByColumnAndRow(0, $row++, utf8_encode($header['subtitle']));
+                    $sheet->setCellValueByColumnAndRow(0, $row++, $header['subtitle']);
                 }
             }
             $row++;
@@ -186,7 +186,7 @@ function ko_export_to_xlsx(
             $col = 0;
             foreach ($header['header'] as $h) {
                 $sheet->getStyleByColumnAndRow($col, $row)->applyFromArray($xlsHeaderFormat);
-                $sheet->setCellValueByColumnAndRow($col++, $row, utf8_encode(ko_unhtml($h)));
+                $sheet->setCellValueByColumnAndRow($col++, $row, ko_unhtml($h));
             }
             $row++;
         } else {
@@ -195,7 +195,7 @@ function ko_export_to_xlsx(
                     $col = 0;
                     foreach ($r as $h) {
                         $sheet->getStyleByColumnAndRow($col, $row)->applyFromArray($xlsHeaderFormat);
-                        $sheet->setCellValueByColumnAndRow($col++, $row, utf8_encode(ko_unhtml($h)));
+                        $sheet->setCellValueByColumnAndRow($col++, $row, ko_unhtml($h));
                     }
                     $row++;
                 }
@@ -203,7 +203,7 @@ function ko_export_to_xlsx(
                 $manual_linebreaks = true;
                 foreach ($header as $h) {
                     $sheet->getStyleByColumnAndRow($col, $row)->applyFromArray($xlsHeaderFormat);
-                    $sheet->setCellValueByColumnAndRow($col++, $row, utf8_encode(ko_unhtml($h)));
+                    $sheet->setCellValueByColumnAndRow($col++, $row, ko_unhtml($h));
                     // add linebreak if the current column is set as a linebreak-column
                     if (in_array($h, $linebreak_columns)) {
                         $row++;
@@ -221,7 +221,7 @@ function ko_export_to_xlsx(
         foreach ($dd as $k => $d) {
             if ($wrap[$col] == true) {
                 $sheet->getStyleByColumnAndRow($col, $row)->getAlignment()->setWrapText(true);
-                $sheet->setCellValueByColumnAndRow($col++, $row, utf8_encode(strip_tags(ko_unhtml($d))));
+                $sheet->setCellValueByColumnAndRow($col++, $row, strip_tags(ko_unhtml($d)));
             } else {
                 //Set format of cell according to formatting definition
                 if (isset($formatting['cells'][($row - 1) . ':' . $col])) {
@@ -250,7 +250,7 @@ function ko_export_to_xlsx(
                     }
                 }
 
-                $sheet->setCellValueByColumnAndRow($col++, $row, utf8_encode(strip_tags(ko_unhtml($d))));
+                $sheet->setCellValueByColumnAndRow($col++, $row, strip_tags(ko_unhtml($d)));
             }
             // set manual linebreak if required
             if ($manual_linebreaks) {
@@ -263,7 +263,7 @@ function ko_export_to_xlsx(
         $row++;
     }
     // Rename sheet
-    $objPHPExcel->getActiveSheet()->setTitle(utf8_encode($title));
+    $objPHPExcel->getActiveSheet()->setTitle($title);
 
 
     // Save Excel file
