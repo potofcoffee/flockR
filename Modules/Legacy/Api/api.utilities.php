@@ -1243,7 +1243,7 @@ function check_email($email)
     if (strpos($email, ' ') !== false) {
         return false;
     }
-    return preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/', $email) ? true : false;
+    return filter_var(trim($email), FILTER_VALIDATE_EMAIL);
 }//check_email()
 
 
