@@ -33,6 +33,7 @@ use \Peregrinus\Flockr\Core\Scheduler;
 define('FLOCKR_preventRedirectToRoot', true);
 
 $app = App::getInstance();
+$app->setModuleName('scheduler');
 include(FLOCKR_basePath.'inc/ko.inc');
 $app->bootstrap();
 

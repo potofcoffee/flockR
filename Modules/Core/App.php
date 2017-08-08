@@ -102,6 +102,7 @@ class App
             }
         }
 
+
         // include <module>/inc/<module>.inc
         if (file_exists($localInclude = FLOCKR_basePath . $this->moduleName . '/inc/' . $this->moduleName . '.inc')) {
             require_once($localInclude);
@@ -112,31 +113,33 @@ class App
             require_once($localInclude);
         }
 
-        //Redirect to SSL if needed
-        ko_check_ssl(); // TODO: move to Router?
+        if (!in_array($this->moduleName, ['scheduler'])) {
+            //Redirect to SSL if needed
+            ko_check_ssl(); // TODO: move to Router?
 
-        //Handle login/logout
-        ko_check_login(); // TODO: move to legacy security api?
+            //Handle login/logout
+            ko_check_login(); // TODO: move to legacy security api?
 
-        SessionService::getInstance()->setArgument('show', '');
+            SessionService::getInstance()->setArgument('show', '');
 
-        //Plugins einlesen:
-        $hooks = hook_include_main("_all");
-        if (sizeof($hooks) > 0) {
-            foreach ($hooks as $hook) {
-                include_once($hook);
+            //Plugins einlesen:
+            $hooks = hook_include_main("_all");
+            if (sizeof($hooks) > 0) {
+                foreach ($hooks as $hook) {
+                    include_once($hook);
+                }
             }
+
+            $do_action = Request::getInstance()->getArgument('action', 'index');
+            if (false === format_userinput($do_action, "alpha+", true, 50)) {
+                trigger_error("invalid action: " . $do_action, E_USER_ERROR);
+            }
+
+            $this->action = ($do_action ? $do_action : 'index');
+
+            // include Smarty (legacy)
+            require_once(FLOCKR_basePath . 'inc/smarty.inc');
         }
-
-        $do_action = Request::getInstance()->getArgument('action', 'index');
-        if (false === format_userinput($do_action, "alpha+", true, 50)) {
-            trigger_error("invalid action: " . $do_action, E_USER_ERROR);
-        }
-
-        $this->action = ($do_action ? $do_action : 'index');
-
-        // include Smarty (legacy)
-        require_once(FLOCKR_basePath . 'inc/smarty.inc');
     }
 
 
@@ -473,5 +476,29 @@ class App
         }
         return $handler;
     }
+
+    /**
+     * Get the name of the currently active module
+     * @return string Name of the active module
+     */
+    public function getModuleName()
+    {
+        return $this->moduleName;
+    }
+
+    /**
+     * Set the name of the active module
+     *
+     * Normally, this function should not be needed, as the module name is automatically determined
+     * from the current route. However, special modules such as the scheduler need a way to manually set
+     * the module name in order to work correctly
+     * @param string $moduleName Module name
+     */
+    public function setModuleName($moduleName)
+    {
+        $this->moduleName = $moduleName;
+    }
+
+
 
 }
