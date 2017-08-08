@@ -31,6 +31,7 @@ namespace Peregrinus\Flockr\Mailman;
 
 use Peregrinus\Flockr\Core\AbstractModule;
 use Peregrinus\Flockr\Core\ConfigurationManager;
+use Peregrinus\Flockr\Core\DB;
 use Peregrinus\Flockr\Core\Debugger;
 use Peregrinus\Flockr\Core\Logger;
 use Peregrinus\Flockr\Core\Scheduler;
@@ -55,25 +56,28 @@ class MailmanModule extends AbstractModule
         $scheduler = Scheduler::getInstance();
         if (!$scheduler->nextScheduled('update_mailman')) {
             $scheduler->scheduleEvent(time(), 'fiveminutes', 'update_mailman');
+            Logger::getLogger()->addDebug('updateMailman scheduler action registered');
         }
 
         /**
          * Update mailman settings
          */
         HookService::getInstance()->addAction('update_mailman', [$this, 'updateMailman']);
+        Logger::getLogger()->addDebug('updateMailman scheduler action updated');
     }
 
     protected function getGroupMembers($groupId) {
         $fullgid = \ko_groups_decode($groupId, 'full_gid');
-        $people = db_select_data('ko_leute', "WHERE `groups` REGEXP '$fullgid' AND `deleted` = '0' AND `hidden` = '0' ", '*', 'ORDER BY nachname, vorname ASC');
+        // define ('DEBUG_THIS_STATEMENT', 1);
+        $people = DB::getInstance()->select('ko_leute', "WHERE `groups` REGEXP '$fullgid' AND `deleted` = '0' AND `hidden` = '0' ", '*', 'ORDER BY nachname, vorname ASC');
         $members = [];
         foreach ($people as $person) {
             $email = '';
             \ko_get_leute_email($person, $email);
             if (is_array($email)) {
-                foreach ($email as $address) $members[] = $address;
+                foreach ($email as $address) $members[] = trim($address);
             } else {
-                $members[] = $email;
+                $members[] = trim($email);
             }
         }
         return array_unique($members);
@@ -87,13 +91,12 @@ class MailmanModule extends AbstractModule
         Logger::getLogger()->addDebug('updateMailman running');
 
         $lists = ConfigurationManager::getInstance()->getConfigurationSet('MailingLists', $this->moduleInfo['relativePath'].'Configuration');
-        foreach ($lists['lists'] as $key => $value) {
-            if (strlen($value) <6) $lists['lists'][$key] = str_pad($value, 6, '0', STR_PAD_LEFT);
-        }
-
         $mailmanService = new MailmanService();
 
-        foreach ($lists['lists'] as $mailingList => $group) {
+        foreach ($lists['lists'] as $mailingList => $mailingListConfiguration) {
+            $group = $mailingListConfiguration['group'];
+            if (strlen($group) < 6) $group = str_pad($group, 6, '0', STR_PAD_LEFT);
+
             $listMembers = MailmanService::getInstance()->getListMembers($mailingList);
 
             $groupMembers = $this->getGroupMembers($group);
@@ -111,7 +114,7 @@ class MailmanModule extends AbstractModule
             // find members to unsubscribe
             $unsubscribe = [];
             foreach ($listMembers as $address) {
-                if (!in_array($address, $groupMembers)) {
+                if ((!in_array($address, $groupMembers)) && (!in_array($address, $mailingListConfiguration['noUnsubscribe']))) {
                     $mailmanService->unsubscribe($mailingList, $address);
                     Logger::getLogger()->addDebug('unsubscribed '.$address.' from mailing list '.$mailingList);
                     $unsubscribe[] = $address;

@@ -2,9 +2,16 @@
 mailmanPath: /usr/sbin
 lists:
 # Configure each mailing list with
-# <list name>: <group id in flockR>
+# <list name>:
+#   group: <group id in flockR>
 # <group id> can be an integer or the full, 6-character, zero-padded string
-  test: 55
-  wortzummontag: 125
-  newsletter: 124
-
+  test:
+    group: 55
+  wortzummontag:
+    group: 125
+    noUnsubscribe:
+      - noreply@vmfds.de
+  newsletter:
+    group: 124
+    noUnsubscribe:
+      - noreply@vmfds.de
